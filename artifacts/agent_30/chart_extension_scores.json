@@ -1,0 +1,146 @@
+[
+  {
+    "event_id": "EV013",
+    "score_5d": -0.1,
+    "score_20d": 0.4,
+    "confidence": 0.56,
+    "evidence": "约47–58根逐步抬升，59根放量长绿K且上影明显，60根小红K未收复该回撤；MACD仍在正区间、末端正柱缩短。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV014",
+    "score_5d": -0.4,
+    "score_20d": -0.5,
+    "confidence": 0.68,
+    "evidence": "约22根冲高后重心持续下移，50–60根反复走低且末根绿K下探；MACD从前期正区间回落至零轴附近，末段偏弱。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV015",
+    "score_5d": 0.6,
+    "score_20d": 0.3,
+    "confidence": 0.63,
+    "evidence": "约51根急跌后54–60根连续反弹，58–60根红K扩大且60根显著放量；MACD负区间上拐、末段正向柱体增大。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV016",
+    "score_5d": -0.4,
+    "score_20d": -0.5,
+    "confidence": 0.68,
+    "evidence": "约27根见顶后至60根震荡下行，末根绿K落向最近低位且量能略增；MACD从高位持续回落，末端仅在零轴附近走平。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV017",
+    "score_5d": 0.2,
+    "score_20d": 0.5,
+    "confidence": 0.59,
+    "evidence": "约18根低位后至60根总体修复，51–60根再向阶段高位抬升；MACD末段上拐并维持正向，但高位K线交替显示短期犹豫。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV018",
+    "score_5d": 0.6,
+    "score_20d": 0.7,
+    "confidence": 0.72,
+    "evidence": "约49–54根横盘后55–60根连续红K突破至图中高位，突破初段量能增加；MACD两线重新上拐、末段正向柱体扩大。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV019",
+    "score_5d": 0.0,
+    "score_20d": -0.2,
+    "confidence": 0.49,
+    "evidence": "约33根放量跳升后数根迅速回撤，约41–60根在较窄区间横盘且量能递减；MACD自跳升后的高位下滑，末段仍略偏负。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV020",
+    "score_5d": -0.3,
+    "score_20d": 0.2,
+    "confidence": 0.59,
+    "evidence": "约35–54根价格阶梯上行，但55–60根从高位回撤并连续出现绿K；MACD正向柱体收敛，末端转为略负。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV021",
+    "score_5d": 0.2,
+    "score_20d": 0.5,
+    "confidence": 0.55,
+    "evidence": "约42–50根快速拉升后51根放量回落，54–60根再次向前高反弹；MACD仍在正区间但末段动能一度转负，短期走势分歧。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV022",
+    "score_5d": -0.5,
+    "score_20d": 0.1,
+    "confidence": 0.57,
+    "evidence": "约44–56根强势反弹，但60根放量长绿K吞没最近数根涨幅；MACD上行斜率减小，正向柱体明显收缩。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV023",
+    "score_5d": -0.3,
+    "score_20d": 0.0,
+    "confidence": 0.51,
+    "evidence": "约1–20根大幅下行、约39–55根反弹，56–60根震荡并以较长绿K收尾；MACD反弹后的正向动能消退、末端转负。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV024",
+    "score_5d": 0.7,
+    "score_20d": 0.7,
+    "confidence": 0.74,
+    "evidence": "约55–60根连续放量红K向上突破约20–54根盘整区，末根达到图中高位；MACD两线陡升且正向柱体逐根扩大。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV025",
+    "score_5d": 0.6,
+    "score_20d": 0.4,
+    "confidence": 0.65,
+    "evidence": "约40–54根持续回撤后，55–60根红K快速反弹，末根放量明显；MACD自负区间低点上拐并出现正向柱体。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV026",
+    "score_5d": -0.2,
+    "score_20d": -0.6,
+    "confidence": 0.64,
+    "evidence": "约25–29根异常放量冲高后，30–60根高点与低点逐步下移；54–60根低位窄幅盘整，MACD仍在零轴下方附近。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV027",
+    "score_5d": 0.5,
+    "score_20d": 0.7,
+    "confidence": 0.68,
+    "evidence": "约37–60根震荡上行，58–60根突破此前约52–57根高点；MACD两线向上，末段正向柱体扩大，量能维持中等。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV028",
+    "score_5d": 0.1,
+    "score_20d": -0.5,
+    "confidence": 0.61,
+    "evidence": "约41根放量冲高后至57根持续下行，58–60根红K从低位反弹；MACD仍在负区间，末段负向柱体收窄。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV029",
+    "score_5d": 0.1,
+    "score_20d": -0.3,
+    "confidence": 0.54,
+    "evidence": "约26–51根持续回落，52–60根低位反弹后横盘；MACD自负区间上拐、负向柱体收敛，但价格仍远低于前期高位。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV030",
+    "score_5d": 0.1,
+    "score_20d": -0.2,
+    "confidence": 0.5,
+    "evidence": "约27–52根从高位波动下行，53–60根在低位小幅反弹且红绿K交替；MACD负向动能收敛、两线贴近，但量能未明显放大。",
+    "abstain_reason": null
+  }
+]

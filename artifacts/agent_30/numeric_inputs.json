@@ -1,0 +1,1166 @@
+[
+  {
+    "event_id": "EV001",
+    "returns": {
+      "return_5d": -0.0058,
+      "return_20d": -0.0339,
+      "return_40d": -0.0047
+    },
+    "close_over_ma5": -0.0077,
+    "close_over_ma20": -0.0313,
+    "volume_over_20d_median": 0.5626,
+    "20d_max_drawdown": -0.0778,
+    "20d_daily_volatility": 0.0171,
+    "macd_dif_pct": -0.0073,
+    "macd_hist_pct": -0.0078,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 97.6087,
+        "high": 98.8043,
+        "low": 97.5,
+        "close": 98.6957,
+        "volume_ratio": 0.9121
+      },
+      {
+        "bar": 52,
+        "open": 97.9348,
+        "high": 98.587,
+        "low": 95.6522,
+        "close": 97.0652,
+        "volume_ratio": 0.8141
+      },
+      {
+        "bar": 53,
+        "open": 96.9565,
+        "high": 96.9565,
+        "low": 93.913,
+        "close": 94.2391,
+        "volume_ratio": 0.9797
+      },
+      {
+        "bar": 54,
+        "open": 93.8043,
+        "high": 94.5652,
+        "low": 92.6087,
+        "close": 92.8261,
+        "volume_ratio": 0.5209
+      },
+      {
+        "bar": 55,
+        "open": 92.8261,
+        "high": 93.6957,
+        "low": 92.7174,
+        "close": 93.587,
+        "volume_ratio": 0.3518
+      },
+      {
+        "bar": 56,
+        "open": 93.587,
+        "high": 94.3478,
+        "low": 92.8261,
+        "close": 93.6957,
+        "volume_ratio": 0.4811
+      },
+      {
+        "bar": 57,
+        "open": 93.6957,
+        "high": 94.1304,
+        "low": 93.2609,
+        "close": 93.6957,
+        "volume_ratio": 0.3413
+      },
+      {
+        "bar": 58,
+        "open": 93.4783,
+        "high": 94.2391,
+        "low": 93.2609,
+        "close": 94.0217,
+        "volume_ratio": 0.3789
+      },
+      {
+        "bar": 59,
+        "open": 93.6957,
+        "high": 95.0,
+        "low": 93.6957,
+        "close": 94.3478,
+        "volume_ratio": 0.5819
+      },
+      {
+        "bar": 60,
+        "open": 94.4565,
+        "high": 95.0,
+        "low": 92.9348,
+        "close": 93.0435,
+        "volume_ratio": 0.5626
+      }
+    ]
+  },
+  {
+    "event_id": "EV002",
+    "returns": {
+      "return_5d": -0.048,
+      "return_20d": 0.0231,
+      "return_40d": -0.2294
+    },
+    "close_over_ma5": -0.03,
+    "close_over_ma20": -0.0063,
+    "volume_over_20d_median": 0.8141,
+    "20d_max_drawdown": -0.1302,
+    "20d_daily_volatility": 0.0489,
+    "macd_dif_pct": -0.0286,
+    "macd_hist_pct": 0.0148,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 68.8335,
+        "high": 69.06,
+        "low": 66.8403,
+        "close": 68.4258,
+        "volume_ratio": 0.849
+      },
+      {
+        "bar": 52,
+        "open": 70.2152,
+        "high": 81.2684,
+        "low": 68.4258,
+        "close": 77.9388,
+        "volume_ratio": 2.5263
+      },
+      {
+        "bar": 53,
+        "open": 77.0102,
+        "high": 79.0034,
+        "low": 72.231,
+        "close": 74.2922,
+        "volume_ratio": 1.7671
+      },
+      {
+        "bar": 54,
+        "open": 73.9298,
+        "high": 75.6059,
+        "low": 72.299,
+        "close": 73.1823,
+        "volume_ratio": 0.8914
+      },
+      {
+        "bar": 55,
+        "open": 72.5255,
+        "high": 74.0204,
+        "low": 70.3284,
+        "close": 71.778,
+        "volume_ratio": 0.8829
+      },
+      {
+        "bar": 56,
+        "open": 71.0306,
+        "high": 75.6738,
+        "low": 70.5096,
+        "close": 75.017,
+        "volume_ratio": 1.1669
+      },
+      {
+        "bar": 57,
+        "open": 76.2854,
+        "high": 77.4632,
+        "low": 71.2797,
+        "close": 71.8007,
+        "volume_ratio": 1.1422
+      },
+      {
+        "bar": 58,
+        "open": 71.8007,
+        "high": 73.1597,
+        "low": 69.3092,
+        "close": 69.3092,
+        "volume_ratio": 0.8708
+      },
+      {
+        "bar": 59,
+        "open": 68.0181,
+        "high": 68.7429,
+        "low": 65.6852,
+        "close": 67.7916,
+        "volume_ratio": 0.8507
+      },
+      {
+        "bar": 60,
+        "open": 66.863,
+        "high": 71.5289,
+        "low": 66.863,
+        "close": 68.3352,
+        "volume_ratio": 0.8141
+      }
+    ]
+  },
+  {
+    "event_id": "EV003",
+    "returns": {
+      "return_5d": 0.0174,
+      "return_20d": -0.0067,
+      "return_40d": -0.0033
+    },
+    "close_over_ma5": 0.0154,
+    "close_over_ma20": 0.0099,
+    "volume_over_20d_median": 2.7826,
+    "20d_max_drawdown": -0.0776,
+    "20d_daily_volatility": 0.021,
+    "macd_dif_pct": -0.0075,
+    "macd_hist_pct": 0.0019,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 98.2966,
+        "high": 99.246,
+        "low": 96.9003,
+        "close": 99.1622,
+        "volume_ratio": 1.2766
+      },
+      {
+        "bar": 52,
+        "open": 98.7154,
+        "high": 99.5253,
+        "low": 98.4362,
+        "close": 99.0226,
+        "volume_ratio": 0.8642
+      },
+      {
+        "bar": 53,
+        "open": 98.7154,
+        "high": 99.1902,
+        "low": 98.129,
+        "close": 98.3524,
+        "volume_ratio": 0.7337
+      },
+      {
+        "bar": 54,
+        "open": 97.403,
+        "high": 98.5758,
+        "low": 97.403,
+        "close": 98.2686,
+        "volume_ratio": 0.656
+      },
+      {
+        "bar": 55,
+        "open": 97.8777,
+        "high": 98.6317,
+        "low": 97.8777,
+        "close": 98.0452,
+        "volume_ratio": 0.7544
+      },
+      {
+        "bar": 56,
+        "open": 98.2966,
+        "high": 98.52,
+        "low": 97.4867,
+        "close": 97.8777,
+        "volume_ratio": 0.9992
+      },
+      {
+        "bar": 57,
+        "open": 97.8218,
+        "high": 98.2686,
+        "low": 97.2913,
+        "close": 97.9335,
+        "volume_ratio": 0.8774
+      },
+      {
+        "bar": 58,
+        "open": 97.9056,
+        "high": 98.7154,
+        "low": 97.9056,
+        "close": 98.1849,
+        "volume_ratio": 0.8689
+      },
+      {
+        "bar": 59,
+        "open": 98.1849,
+        "high": 98.2407,
+        "low": 97.0958,
+        "close": 97.4309,
+        "volume_ratio": 1.0008
+      },
+      {
+        "bar": 60,
+        "open": 98.1849,
+        "high": 101.7034,
+        "low": 98.1569,
+        "close": 99.7487,
+        "volume_ratio": 2.7826
+      }
+    ]
+  },
+  {
+    "event_id": "EV004",
+    "returns": {
+      "return_5d": 0.0174,
+      "return_20d": 0.0582,
+      "return_40d": 0.0394
+    },
+    "close_over_ma5": 0.0092,
+    "close_over_ma20": 0.0413,
+    "volume_over_20d_median": 1.5187,
+    "20d_max_drawdown": -0.0198,
+    "20d_daily_volatility": 0.0108,
+    "macd_dif_pct": 0.0108,
+    "macd_hist_pct": 0.0105,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 98.5294,
+        "high": 98.5294,
+        "low": 96.6667,
+        "close": 97.3529,
+        "volume_ratio": 0.9921
+      },
+      {
+        "bar": 52,
+        "open": 97.2549,
+        "high": 97.549,
+        "low": 96.4706,
+        "close": 96.8627,
+        "volume_ratio": 0.8427
+      },
+      {
+        "bar": 53,
+        "open": 96.8627,
+        "high": 97.3529,
+        "low": 95.9804,
+        "close": 97.0588,
+        "volume_ratio": 0.8459
+      },
+      {
+        "bar": 54,
+        "open": 97.3529,
+        "high": 98.3333,
+        "low": 96.6667,
+        "close": 98.1373,
+        "volume_ratio": 0.9272
+      },
+      {
+        "bar": 55,
+        "open": 98.3333,
+        "high": 101.8627,
+        "low": 97.7451,
+        "close": 101.5686,
+        "volume_ratio": 2.9206
+      },
+      {
+        "bar": 56,
+        "open": 101.7647,
+        "high": 103.2353,
+        "low": 101.0784,
+        "close": 103.0392,
+        "volume_ratio": 1.7879
+      },
+      {
+        "bar": 57,
+        "open": 103.0392,
+        "high": 104.4118,
+        "low": 101.5686,
+        "close": 102.3529,
+        "volume_ratio": 1.8103
+      },
+      {
+        "bar": 58,
+        "open": 101.8627,
+        "high": 103.9216,
+        "low": 100.7843,
+        "close": 101.6667,
+        "volume_ratio": 1.5914
+      },
+      {
+        "bar": 59,
+        "open": 101.9608,
+        "high": 102.6471,
+        "low": 100.2941,
+        "close": 101.5686,
+        "volume_ratio": 1.7548
+      },
+      {
+        "bar": 60,
+        "open": 102.1569,
+        "high": 104.3137,
+        "low": 101.5686,
+        "close": 103.3333,
+        "volume_ratio": 1.5187
+      }
+    ]
+  },
+  {
+    "event_id": "EV005",
+    "returns": {
+      "return_5d": 0.1529,
+      "return_20d": 0.264,
+      "return_40d": 0.2911
+    },
+    "close_over_ma5": 0.1054,
+    "close_over_ma20": 0.1959,
+    "volume_over_20d_median": 0.6726,
+    "20d_max_drawdown": -0.0284,
+    "20d_daily_volatility": 0.0308,
+    "macd_dif_pct": 0.0343,
+    "macd_hist_pct": 0.0266,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 119.9288,
+        "high": 120.9964,
+        "low": 117.0819,
+        "close": 118.9502,
+        "volume_ratio": 2.2769
+      },
+      {
+        "bar": 52,
+        "open": 118.7722,
+        "high": 120.1068,
+        "low": 115.2135,
+        "close": 115.5694,
+        "volume_ratio": 1.8735
+      },
+      {
+        "bar": 53,
+        "open": 115.0356,
+        "high": 117.8826,
+        "low": 113.79,
+        "close": 116.548,
+        "volume_ratio": 1.326
+      },
+      {
+        "bar": 54,
+        "open": 116.548,
+        "high": 117.3488,
+        "low": 115.3025,
+        "close": 115.6584,
+        "volume_ratio": 1.0041
+      },
+      {
+        "bar": 55,
+        "open": 115.3915,
+        "high": 122.5979,
+        "low": 115.3915,
+        "close": 120.4626,
+        "volume_ratio": 2.0789
+      },
+      {
+        "bar": 56,
+        "open": 120.4626,
+        "high": 121.5302,
+        "low": 119.2171,
+        "close": 120.8185,
+        "volume_ratio": 1.9
+      },
+      {
+        "bar": 57,
+        "open": 120.2847,
+        "high": 124.4662,
+        "low": 119.395,
+        "close": 122.5089,
+        "volume_ratio": 1.7226
+      },
+      {
+        "bar": 58,
+        "open": 121.9751,
+        "high": 123.3986,
+        "low": 119.6619,
+        "close": 119.7509,
+        "volume_ratio": 1.5924
+      },
+      {
+        "bar": 59,
+        "open": 121.7082,
+        "high": 126.6904,
+        "low": 120.8185,
+        "close": 126.2456,
+        "volume_ratio": 2.7296
+      },
+      {
+        "bar": 60,
+        "open": 138.879,
+        "high": 138.879,
+        "low": 138.879,
+        "close": 138.879,
+        "volume_ratio": 0.6726
+      }
+    ]
+  },
+  {
+    "event_id": "EV006",
+    "returns": {
+      "return_5d": -0.0586,
+      "return_20d": 0.0565,
+      "return_40d": 0.31
+    },
+    "close_over_ma5": -0.0175,
+    "close_over_ma20": 0.0273,
+    "volume_over_20d_median": 0.9234,
+    "20d_max_drawdown": -0.1287,
+    "20d_daily_volatility": 0.0447,
+    "macd_dif_pct": 0.0451,
+    "macd_hist_pct": -0.0022,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 157.0389,
+        "high": 163.9505,
+        "low": 152.7915,
+        "close": 162.6714,
+        "volume_ratio": 1.7046
+      },
+      {
+        "bar": 52,
+        "open": 149.8233,
+        "high": 159.9011,
+        "low": 148.417,
+        "close": 158.8198,
+        "volume_ratio": 1.2716
+      },
+      {
+        "bar": 53,
+        "open": 162.3816,
+        "high": 170.3322,
+        "low": 157.7739,
+        "close": 157.7739,
+        "volume_ratio": 1.2976
+      },
+      {
+        "bar": 54,
+        "open": 160.424,
+        "high": 168.5442,
+        "low": 155.9576,
+        "close": 166.6502,
+        "volume_ratio": 1.2475
+      },
+      {
+        "bar": 55,
+        "open": 165.7668,
+        "high": 175.9435,
+        "low": 163.258,
+        "close": 174.5583,
+        "volume_ratio": 1.1864
+      },
+      {
+        "bar": 56,
+        "open": 173.5618,
+        "high": 175.4205,
+        "low": 166.7845,
+        "close": 168.0636,
+        "volume_ratio": 0.9166
+      },
+      {
+        "bar": 57,
+        "open": 168.3887,
+        "high": 171.371,
+        "low": 160.5866,
+        "close": 165.7102,
+        "volume_ratio": 1.0472
+      },
+      {
+        "bar": 58,
+        "open": 167.4205,
+        "high": 173.8516,
+        "low": 165.5406,
+        "close": 169.9647,
+        "volume_ratio": 1.0023
+      },
+      {
+        "bar": 59,
+        "open": 169.3286,
+        "high": 173.4982,
+        "low": 166.8127,
+        "close": 168.2191,
+        "volume_ratio": 0.7709
+      },
+      {
+        "bar": 60,
+        "open": 167.5618,
+        "high": 167.5618,
+        "low": 160.9046,
+        "close": 164.3322,
+        "volume_ratio": 0.9234
+      }
+    ]
+  },
+  {
+    "event_id": "EV007",
+    "returns": {
+      "return_5d": 0.0744,
+      "return_20d": 0.0804,
+      "return_40d": 0.0819
+    },
+    "close_over_ma5": 0.0266,
+    "close_over_ma20": 0.07,
+    "volume_over_20d_median": 2.1784,
+    "20d_max_drawdown": -0.0434,
+    "20d_daily_volatility": 0.0232,
+    "macd_dif_pct": 0.0203,
+    "macd_hist_pct": 0.0182,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 111.6811,
+        "high": 112.5493,
+        "low": 110.734,
+        "close": 111.2865,
+        "volume_ratio": 0.4814
+      },
+      {
+        "bar": 52,
+        "open": 110.8129,
+        "high": 112.4704,
+        "low": 110.8129,
+        "close": 112.2336,
+        "volume_ratio": 0.5338
+      },
+      {
+        "bar": 53,
+        "open": 112.7072,
+        "high": 113.4175,
+        "low": 111.2865,
+        "close": 111.5233,
+        "volume_ratio": 0.4711
+      },
+      {
+        "bar": 54,
+        "open": 111.2076,
+        "high": 116.4167,
+        "low": 110.9708,
+        "close": 114.4436,
+        "volume_ratio": 1.2225
+      },
+      {
+        "bar": 55,
+        "open": 113.8122,
+        "high": 114.8382,
+        "low": 113.1807,
+        "close": 114.5225,
+        "volume_ratio": 0.6851
+      },
+      {
+        "bar": 56,
+        "open": 113.8122,
+        "high": 114.6014,
+        "low": 111.4444,
+        "close": 113.5754,
+        "volume_ratio": 0.5995
+      },
+      {
+        "bar": 57,
+        "open": 117.1271,
+        "high": 123.0466,
+        "low": 115.7064,
+        "close": 115.7064,
+        "volume_ratio": 3.3788
+      },
+      {
+        "bar": 58,
+        "open": 117.9953,
+        "high": 120.5209,
+        "low": 117.3639,
+        "close": 119.337,
+        "volume_ratio": 2.1492
+      },
+      {
+        "bar": 59,
+        "open": 118.3899,
+        "high": 129.5185,
+        "low": 117.9953,
+        "close": 127.6243,
+        "volume_ratio": 3.491
+      },
+      {
+        "bar": 60,
+        "open": 126.2826,
+        "high": 127.6243,
+        "low": 122.3362,
+        "close": 123.0466,
+        "volume_ratio": 2.1784
+      }
+    ]
+  },
+  {
+    "event_id": "EV008",
+    "returns": {
+      "return_5d": 0.0385,
+      "return_20d": 0.2749,
+      "return_40d": 0.3824
+    },
+    "close_over_ma5": 0.0428,
+    "close_over_ma20": 0.1489,
+    "volume_over_20d_median": 1.2545,
+    "20d_max_drawdown": -0.0362,
+    "20d_daily_volatility": 0.025,
+    "macd_dif_pct": 0.0535,
+    "macd_hist_pct": 0.022,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 99.6099,
+        "high": 102.3641,
+        "low": 96.6785,
+        "close": 99.6217,
+        "volume_ratio": 1.2637
+      },
+      {
+        "bar": 52,
+        "open": 99.6217,
+        "high": 105.0355,
+        "low": 97.7069,
+        "close": 102.7305,
+        "volume_ratio": 1.2928
+      },
+      {
+        "bar": 53,
+        "open": 102.7187,
+        "high": 109.7872,
+        "low": 101.9858,
+        "close": 105.2009,
+        "volume_ratio": 1.3746
+      },
+      {
+        "bar": 54,
+        "open": 105.2246,
+        "high": 115.5674,
+        "low": 105.2009,
+        "close": 110.3664,
+        "volume_ratio": 1.5456
+      },
+      {
+        "bar": 55,
+        "open": 111.1111,
+        "high": 113.2624,
+        "low": 106.1466,
+        "close": 111.5485,
+        "volume_ratio": 1.2577
+      },
+      {
+        "bar": 56,
+        "open": 111.1111,
+        "high": 111.4775,
+        "low": 106.643,
+        "close": 110.0709,
+        "volume_ratio": 0.9689
+      },
+      {
+        "bar": 57,
+        "open": 110.2482,
+        "high": 111.0284,
+        "low": 103.7825,
+        "close": 108.2861,
+        "volume_ratio": 1.0311
+      },
+      {
+        "bar": 58,
+        "open": 106.383,
+        "high": 112.5768,
+        "low": 106.1466,
+        "close": 111.5721,
+        "volume_ratio": 0.7871
+      },
+      {
+        "bar": 59,
+        "open": 111.974,
+        "high": 113.0851,
+        "low": 108.747,
+        "close": 109.6336,
+        "volume_ratio": 0.4412
+      },
+      {
+        "bar": 60,
+        "open": 109.7281,
+        "high": 117.3641,
+        "low": 108.4752,
+        "close": 115.8392,
+        "volume_ratio": 1.2545
+      }
+    ]
+  },
+  {
+    "event_id": "EV009",
+    "returns": {
+      "return_5d": 0.0398,
+      "return_20d": 0.1961,
+      "return_40d": 0.0181
+    },
+    "close_over_ma5": 0.0139,
+    "close_over_ma20": 0.067,
+    "volume_over_20d_median": 0.9552,
+    "20d_max_drawdown": -0.0326,
+    "20d_daily_volatility": 0.0278,
+    "macd_dif_pct": 0.0151,
+    "macd_hist_pct": 0.02,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 90.3591,
+        "high": 90.9091,
+        "low": 89.0011,
+        "close": 89.6745,
+        "volume_ratio": 0.5582
+      },
+      {
+        "bar": 52,
+        "open": 89.5286,
+        "high": 90.202,
+        "low": 88.1145,
+        "close": 89.2256,
+        "volume_ratio": 0.7531
+      },
+      {
+        "bar": 53,
+        "open": 91.0774,
+        "high": 93.6364,
+        "low": 90.5948,
+        "close": 93.1538,
+        "volume_ratio": 1.2512
+      },
+      {
+        "bar": 54,
+        "open": 92.5926,
+        "high": 93.9955,
+        "low": 92.0314,
+        "close": 92.6824,
+        "volume_ratio": 0.6338
+      },
+      {
+        "bar": 55,
+        "open": 93.0752,
+        "high": 93.7037,
+        "low": 91.3356,
+        "close": 91.5825,
+        "volume_ratio": 0.6956
+      },
+      {
+        "bar": 56,
+        "open": 91.7957,
+        "high": 92.2334,
+        "low": 90.303,
+        "close": 90.7295,
+        "volume_ratio": 0.8819
+      },
+      {
+        "bar": 57,
+        "open": 92.5926,
+        "high": 94.321,
+        "low": 92.5926,
+        "close": 93.5017,
+        "volume_ratio": 0.9775
+      },
+      {
+        "bar": 58,
+        "open": 94.2649,
+        "high": 97.0819,
+        "low": 92.7048,
+        "close": 93.1313,
+        "volume_ratio": 1.0225
+      },
+      {
+        "bar": 59,
+        "open": 93.3333,
+        "high": 97.2727,
+        "low": 92.9293,
+        "close": 97.0146,
+        "volume_ratio": 1.3476
+      },
+      {
+        "bar": 60,
+        "open": 96.9697,
+        "high": 96.9697,
+        "low": 94.3883,
+        "close": 95.2301,
+        "volume_ratio": 0.9552
+      }
+    ]
+  },
+  {
+    "event_id": "EV010",
+    "returns": {
+      "return_5d": -0.0117,
+      "return_20d": 0.0712,
+      "return_40d": 0.2203
+    },
+    "close_over_ma5": -0.019,
+    "close_over_ma20": -0.0002,
+    "volume_over_20d_median": 0.803,
+    "20d_max_drawdown": -0.0436,
+    "20d_daily_volatility": 0.0286,
+    "macd_dif_pct": 0.0308,
+    "macd_hist_pct": -0.0137,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 133.4661,
+        "high": 135.9008,
+        "low": 131.5184,
+        "close": 132.6251,
+        "volume_ratio": 0.4719
+      },
+      {
+        "bar": 52,
+        "open": 133.5547,
+        "high": 138.911,
+        "low": 132.8021,
+        "close": 134.3515,
+        "volume_ratio": 0.8712
+      },
+      {
+        "bar": 53,
+        "open": 133.0235,
+        "high": 133.0235,
+        "low": 118.548,
+        "close": 128.6853,
+        "volume_ratio": 1.4988
+      },
+      {
+        "bar": 54,
+        "open": 127.0474,
+        "high": 138.1142,
+        "low": 126.826,
+        "close": 135.1483,
+        "volume_ratio": 1.066
+      },
+      {
+        "bar": 55,
+        "open": 135.104,
+        "high": 136.7862,
+        "low": 128.5082,
+        "close": 132.7579,
+        "volume_ratio": 0.9763
+      },
+      {
+        "bar": 56,
+        "open": 133.9088,
+        "high": 138.4683,
+        "low": 129.7034,
+        "close": 137.1403,
+        "volume_ratio": 1.6145
+      },
+      {
+        "bar": 57,
+        "open": 136.1664,
+        "high": 139.1766,
+        "low": 133.5104,
+        "close": 134.7942,
+        "volume_ratio": 1.0444
+      },
+      {
+        "bar": 58,
+        "open": 134.7942,
+        "high": 136.255,
+        "low": 130.0575,
+        "close": 134.44,
+        "volume_ratio": 0.9469
+      },
+      {
+        "bar": 59,
+        "open": 133.5547,
+        "high": 136.1222,
+        "low": 128.9509,
+        "close": 131.1642,
+        "volume_ratio": 1.0379
+      },
+      {
+        "bar": 60,
+        "open": 131.2085,
+        "high": 133.6875,
+        "low": 129.0394,
+        "close": 131.2085,
+        "volume_ratio": 0.803
+      }
+    ]
+  },
+  {
+    "event_id": "EV011",
+    "returns": {
+      "return_5d": -0.0268,
+      "return_20d": 0.2025,
+      "return_40d": -0.0209
+    },
+    "close_over_ma5": -0.0295,
+    "close_over_ma20": 0.0347,
+    "volume_over_20d_median": 0.7785,
+    "20d_max_drawdown": -0.066,
+    "20d_daily_volatility": 0.0355,
+    "macd_dif_pct": 0.0313,
+    "macd_hist_pct": 0.0127,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 101.5075,
+        "high": 102.6242,
+        "low": 97.9899,
+        "close": 98.325,
+        "volume_ratio": 0.6273
+      },
+      {
+        "bar": 52,
+        "open": 97.4316,
+        "high": 99.6092,
+        "low": 96.9291,
+        "close": 98.8275,
+        "volume_ratio": 0.5917
+      },
+      {
+        "bar": 53,
+        "open": 98.3808,
+        "high": 100.0558,
+        "low": 97.4316,
+        "close": 99.4417,
+        "volume_ratio": 0.5749
+      },
+      {
+        "bar": 54,
+        "open": 100.5025,
+        "high": 109.3802,
+        "low": 100.0,
+        "close": 109.3802,
+        "volume_ratio": 0.9315
+      },
+      {
+        "bar": 55,
+        "open": 107.091,
+        "high": 111.4461,
+        "low": 107.091,
+        "close": 110.3853,
+        "volume_ratio": 1.4759
+      },
+      {
+        "bar": 56,
+        "open": 107.7052,
+        "high": 115.4662,
+        "low": 106.5885,
+        "close": 115.0195,
+        "volume_ratio": 1.6115
+      },
+      {
+        "bar": 57,
+        "open": 113.3445,
+        "high": 115.7454,
+        "low": 110.6644,
+        "close": 111.3903,
+        "volume_ratio": 1.0785
+      },
+      {
+        "bar": 58,
+        "open": 110.8878,
+        "high": 111.5578,
+        "low": 108.6544,
+        "close": 109.4919,
+        "volume_ratio": 0.9044
+      },
+      {
+        "bar": 59,
+        "open": 108.0402,
+        "high": 110.7761,
+        "low": 107.9285,
+        "close": 110.1061,
+        "volume_ratio": 1.0969
+      },
+      {
+        "bar": 60,
+        "open": 109.6036,
+        "high": 110.6644,
+        "low": 107.091,
+        "close": 107.426,
+        "volume_ratio": 0.7785
+      }
+    ]
+  },
+  {
+    "event_id": "EV012",
+    "returns": {
+      "return_5d": 0.1376,
+      "return_20d": -0.018,
+      "return_40d": -0.0546
+    },
+    "close_over_ma5": 0.023,
+    "close_over_ma20": 0.0457,
+    "volume_over_20d_median": 1.1849,
+    "20d_max_drawdown": -0.1878,
+    "20d_daily_volatility": 0.044,
+    "macd_dif_pct": -0.0233,
+    "macd_hist_pct": 0.0318,
+    "last_10_bars": [
+      {
+        "bar": 51,
+        "open": 60.0435,
+        "high": 62.4713,
+        "low": 60.0435,
+        "close": 61.6278,
+        "volume_ratio": 0.8105
+      },
+      {
+        "bar": 52,
+        "open": 61.6712,
+        "high": 64.167,
+        "low": 60.5738,
+        "close": 62.1632,
+        "volume_ratio": 1.036
+      },
+      {
+        "bar": 53,
+        "open": 60.7677,
+        "high": 61.3457,
+        "low": 58.8904,
+        "close": 59.4938,
+        "volume_ratio": 0.964
+      },
+      {
+        "bar": 54,
+        "open": 60.275,
+        "high": 60.4704,
+        "low": 58.1641,
+        "close": 58.8137,
+        "volume_ratio": 0.7823
+      },
+      {
+        "bar": 55,
+        "open": 59.6826,
+        "high": 60.4024,
+        "low": 58.5171,
+        "close": 58.8861,
+        "volume_ratio": 0.7629
+      },
+      {
+        "bar": 56,
+        "open": 60.6664,
+        "high": 65.271,
+        "low": 60.487,
+        "close": 64.9961,
+        "volume_ratio": 1.559
+      },
+      {
+        "bar": 57,
+        "open": 65.0496,
+        "high": 67.5656,
+        "low": 64.6734,
+        "close": 65.2789,
+        "volume_ratio": 1.0398
+      },
+      {
+        "bar": 58,
+        "open": 67.4586,
+        "high": 67.6025,
+        "low": 65.1798,
+        "close": 65.7513,
+        "volume_ratio": 0.7269
+      },
+      {
+        "bar": 59,
+        "open": 64.3848,
+        "high": 65.7585,
+        "low": 63.806,
+        "close": 64.3913,
+        "volume_ratio": 0.6257
+      },
+      {
+        "bar": 60,
+        "open": 64.9751,
+        "high": 67.2632,
+        "low": 64.4687,
+        "close": 66.9883,
+        "volume_ratio": 1.1849
+      }
+    ]
+  }
+]

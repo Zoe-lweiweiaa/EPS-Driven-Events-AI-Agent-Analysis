@@ -1,0 +1,110 @@
+[
+  {
+    "event_id": "EV013",
+    "trade_code": "605333.SH",
+    "end_date": 20250123,
+    "trade_date": "2025-01-24"
+  },
+  {
+    "event_id": "EV014",
+    "trade_code": "688018.SH",
+    "end_date": 20250325,
+    "trade_date": "2025-03-26"
+  },
+  {
+    "event_id": "EV015",
+    "trade_code": "002555.SZ",
+    "end_date": 20250422,
+    "trade_date": "2025-04-23"
+  },
+  {
+    "event_id": "EV016",
+    "trade_code": "002025.SZ",
+    "end_date": 20250504,
+    "trade_date": "2025-05-06"
+  },
+  {
+    "event_id": "EV017",
+    "trade_code": "000988.SZ",
+    "end_date": 20250612,
+    "trade_date": "2025-06-13"
+  },
+  {
+    "event_id": "EV018",
+    "trade_code": "002558.SZ",
+    "end_date": 20250810,
+    "trade_date": "2025-08-11"
+  },
+  {
+    "event_id": "EV019",
+    "trade_code": "600801.SH",
+    "end_date": 20250831,
+    "trade_date": "2025-09-01"
+  },
+  {
+    "event_id": "EV020",
+    "trade_code": "002463.SZ",
+    "end_date": 20250929,
+    "trade_date": "2025-09-30"
+  },
+  {
+    "event_id": "EV021",
+    "trade_code": "002156.SZ",
+    "end_date": 20251028,
+    "trade_date": "2025-10-29"
+  },
+  {
+    "event_id": "EV022",
+    "trade_code": "601319.SH",
+    "end_date": 20251101,
+    "trade_date": "2025-11-03"
+  },
+  {
+    "event_id": "EV023",
+    "trade_code": "601211.SH",
+    "end_date": 20251121,
+    "trade_date": "2025-11-24"
+  },
+  {
+    "event_id": "EV024",
+    "trade_code": "002911.SZ",
+    "end_date": 20260125,
+    "trade_date": "2026-01-26"
+  },
+  {
+    "event_id": "EV025",
+    "trade_code": "603345.SH",
+    "end_date": 20260331,
+    "trade_date": "2026-04-01"
+  },
+  {
+    "event_id": "EV026",
+    "trade_code": "601808.SH",
+    "end_date": 20260423,
+    "trade_date": "2026-04-24"
+  },
+  {
+    "event_id": "EV027",
+    "trade_code": "000338.SZ",
+    "end_date": 20260506,
+    "trade_date": "2026-05-07"
+  },
+  {
+    "event_id": "EV028",
+    "trade_code": "000685.SZ",
+    "end_date": 20260615,
+    "trade_date": "2026-06-16"
+  },
+  {
+    "event_id": "EV029",
+    "trade_code": "603256.SH",
+    "end_date": 20260814,
+    "trade_date": "2026-08-17"
+  },
+  {
+    "event_id": "EV030",
+    "trade_code": "603019.SH",
+    "end_date": 20260901,
+    "trade_date": "2026-09-02"
+  }
+]

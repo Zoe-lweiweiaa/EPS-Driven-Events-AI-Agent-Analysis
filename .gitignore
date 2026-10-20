@@ -1,0 +1,14 @@
+.deps/
+data/*.duckdb
+data/*.duckdb.wal
+data/*_raw_*.tsv
+data/events_*.csv
+data/agent_poc_market.csv
+data/agent_poc_scored.csv
+data/agent_extension_market.csv
+data/agent_30_*.csv
+tmp/
+__pycache__/
+*_回测结果_*/
+*_运行进度.log
+

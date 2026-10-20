@@ -1,0 +1,98 @@
+[
+  {
+    "event_id": "EV001",
+    "score_5d": -0.1,
+    "score_20d": -0.3,
+    "confidence": 0.61,
+    "evidence": "约47–53根K线回落后，54–60根在低位窄幅横盘、量能缩小；MACD线从上方转弱，末段柱体在零轴附近偏负。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV002",
+    "score_5d": -0.4,
+    "score_20d": -0.5,
+    "confidence": 0.69,
+    "evidence": "约36–42根放量下跌，51–55根反弹后56–60根再度回落；末段MACD正柱缩短、两线趋于收敛。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV003",
+    "score_5d": 0.1,
+    "score_20d": -0.2,
+    "confidence": 0.52,
+    "evidence": "约31–45根从高位连续回落，46–59根低位横盘；第60根红K伴随量能回升，MACD负向动能收敛，但尚未摆脱此前下降结构。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV004",
+    "score_5d": 0.3,
+    "score_20d": 0.6,
+    "confidence": 0.69,
+    "evidence": "约55根放量长红突破此前约40–54根平台，56–60根维持高位；MACD两线向上且末段正向柱体显著。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV005",
+    "score_5d": 0.6,
+    "score_20d": 0.8,
+    "confidence": 0.76,
+    "evidence": "约50根放量上破此前横盘区，55–59根再度放量上行并创图中高位；MACD两线抬升，末段正向柱体扩大。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV006",
+    "score_5d": -0.1,
+    "score_20d": 0.4,
+    "confidence": 0.59,
+    "evidence": "约1–55根总体抬升，50–56根上探高位后57–60根横盘回落；末根绿K且量能不强，MACD末段近乎走平。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV007",
+    "score_5d": -0.2,
+    "score_20d": 0.5,
+    "confidence": 0.55,
+    "evidence": "约56–59根放量快速冲高，但第60根放量长绿K回撤；MACD两线仍向上、正向柱体扩大，短期量价分歧明显。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV008",
+    "score_5d": 0.2,
+    "score_20d": 0.6,
+    "confidence": 0.66,
+    "evidence": "约38–60根持续抬升，末根红K靠近阶段高位；MACD两线在零轴上方，但约54–60根正向柱体逐步缩短。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV009",
+    "score_5d": 0.1,
+    "score_20d": 0.3,
+    "confidence": 0.55,
+    "evidence": "约41根探低后至59根逐步反弹，55–60根仍有高低交替；MACD由负转正并上行，末根绿K令短线动能有所犹豫。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV010",
+    "score_5d": -0.2,
+    "score_20d": 0.3,
+    "confidence": 0.57,
+    "evidence": "约19–48根明显上行，此后49–60根高位横盘且末段略回落；MACD高位走平并在最后数根出现负向柱体。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV011",
+    "score_5d": -0.2,
+    "score_20d": 0.2,
+    "confidence": 0.54,
+    "evidence": "约55–56根放量拉升至前高附近后，57–60根连续绿K回撤；MACD仍在正区间，但末段正向柱体收窄。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV012",
+    "score_5d": 0.3,
+    "score_20d": -0.1,
+    "confidence": 0.55,
+    "evidence": "约1–53根总体下行，54–60根低位企稳且末段红K增多；MACD两线从负区间上拐、正向柱体扩大，但价格尚在此前下降区间低部。",
+    "abstain_reason": null
+  }
+]

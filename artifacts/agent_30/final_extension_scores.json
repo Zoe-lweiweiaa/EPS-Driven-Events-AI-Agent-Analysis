@@ -1,0 +1,146 @@
+[
+  {
+    "event_id": "EV013",
+    "score_5d": 0.0,
+    "score_20d": 0.4,
+    "confidence": 0.54,
+    "evidence": "EPS综合评分0.5333，FY1仅0.3333，基本面增量有限。近20日上涨11.43%、仍高于MA20，支持中期正分；但第59根放量长绿K后第60根未收复跌幅，图表比近5日累计涨幅更能反映即时风险，因此5日置中性。MACD正柱缩短使20日低于数值Agent的0.5。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV014",
+    "score_5d": -0.6,
+    "score_20d": -0.6,
+    "confidence": 0.70,
+    "evidence": "FY0/FY1 EPS评分均为0.6667，提供一定基本面支撑，但价格近5日和20日分别下跌6.90%与9.65%，同时低于MA5、MA20且MACD偏负。图表亦显示高点后持续下移。采纳数值Agent对趋势的较强负面判断，因EPS正向信号和图表所示MACD接近零轴，将-0.7略收敛。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV015",
+    "score_5d": 0.6,
+    "score_20d": 0.2,
+    "confidence": 0.62,
+    "evidence": "两位Agent对短线放量反弹和5日0.6判断一致：近5日涨10.24%，末根量比2.754。EPS综合0.5333、FY1仅0.3333；此前急跌后近20日仅涨3.37%，DIF仍略负。故5日采纳一致信号，20日低于两位Agent的0.3，以反映反转尚未确认。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV016",
+    "score_5d": -0.5,
+    "score_20d": -0.6,
+    "confidence": 0.68,
+    "evidence": "EPS综合0.5333、FY1仅0.3333。近20日下跌10.10%，低于MA5和MA20，DIF及柱均负；图表显示见顶后震荡下行、末根靠近近期低位且略放量。数值Agent的较强负分有多项指标支持；图表所谓MACD走平不足以抵消价格持续下行，因此取数值Agent的两个期限分数。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV017",
+    "score_5d": 0.2,
+    "score_20d": 0.5,
+    "confidence": 0.62,
+    "evidence": "EPS综合0.5333，FY1评分0.3333，使基本面支持温和。近20日上涨4.00%、回撤仅2.82%，高于MA20且MACD为正，图表亦见阶段性修复，故20日采用两位Agent一致的0.5。近5日仅上涨1.33%，高位K线交替，短线取较谨慎的0.2。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV018",
+    "score_5d": 0.4,
+    "score_20d": 0.6,
+    "confidence": 0.64,
+    "evidence": "两位Agent均见横盘后连续红K突破、MACD上拐，近5日涨23.59%，支撑上行方向。EPS综合0.5333且FY1仅0.3333，价格高于MA20约17.47%，短期追涨空间受陡峭涨幅约束。因而5日低于两位Agent，20日也较一致给出的0.7减一档。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV019",
+    "score_5d": -0.1,
+    "score_20d": 0.0,
+    "confidence": 0.46,
+    "evidence": "EPS综合评分0.56，FY0/FY1分别为0.6/0.5。价格近5日微涨但末段回落并低于MA5，MACD柱转负、缩量，5日采纳数值Agent的轻微负分。近20日小涨且仅高于MA20约0.79%，与图表所见横盘及负向动能冲突，20日方向置中性，未采纳任一Agent的单边判断。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV020",
+    "score_5d": -0.3,
+    "score_20d": 0.1,
+    "confidence": 0.52,
+    "evidence": "EPS综合0.5333、FY1评分0.3333，虽覆盖机构较多，改善幅度不强。两位Agent均见高位回撤，近5日跌7.18%、MACD柱略负，5日取一致的-0.3。近20日仍涨6.46%、高于MA20且DIF为正，中期留微弱正分；图表所示连续绿K和动能收缩使其低于图表Agent的0.2。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV021",
+    "score_5d": 0.3,
+    "score_20d": 0.5,
+    "confidence": 0.55,
+    "evidence": "FY0/FY1 EPS评分均为0.6667且新增4家。近5日上涨8.75%、近20日上涨26.26%，图表显示回撤后再次逼近高位，支持正分；但MACD柱略负、20日最大回撤17.46%，短线波动较大。5日较数值Agent的0.4收敛，20日采用两位Agent一致的0.5。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV022",
+    "score_5d": -0.5,
+    "score_20d": 0.0,
+    "confidence": 0.56,
+    "evidence": "EPS评分0.5，基本面中性。两位Agent均给5日-0.5：末根放量长绿K吞没近期涨幅，收盘低于MA5。20日虽曾上涨9.75%，现价仅高于MA20约0.78%，MACD正柱明显收缩；因此既不延用此前强反弹的正分，也不把单根回撤直接外推为持续下跌，取中性。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV023",
+    "score_5d": -0.4,
+    "score_20d": -0.2,
+    "confidence": 0.58,
+    "evidence": "EPS评分0.5，缺少明确基本面方向。近5日跌4.41%，收盘低于MA5、MA20，MACD柱负；图表亦见反弹后长绿K与正向动能消退。短线较图表Agent的-0.3更谨慎。近20日仅微涨而价格重新低于MA20，因此中期取负分，但比数值Agent的-0.3略轻。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV024",
+    "score_5d": 0.6,
+    "score_20d": 0.7,
+    "confidence": 0.67,
+    "evidence": "连续放量红K突破长期盘整、MACD正柱扩大，近5日及20日分别上涨13.15%和15.40%，两位Agent方向一致。EPS综合0.5333、FY1评分0.3333，且FY1仅3家机构，基本面证据较薄；价格已高于MA20约12.77%。因此5日较两位Agent的0.7收敛一档，20日采纳图表Agent的0.7。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV025",
+    "score_5d": 0.6,
+    "score_20d": 0.3,
+    "confidence": 0.62,
+    "evidence": "EPS综合0.8667、FY0为1.0且新增5家，基本面支撑较强。两位Agent均见末段放量快速反弹，近5日涨12.33%，5日取一致的0.6。近20日仍跌1.17%、DIF略负，说明反转尚未确立；但强EPS修订和MACD上拐使20日高于数值Agent的0.2，低于图表Agent的0.4。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV026",
+    "score_5d": 0.0,
+    "score_20d": -0.4,
+    "confidence": 0.52,
+    "evidence": "FY0/FY1 EPS评分均为0.6667。末根放量上涨并略高于MA5，支持数值Agent的短线改善；但近5日仍跌0.65%，图表显示高低点持续下移，故5日不追随单根反弹而取中性。近20日跌7.19%、低于MA20、MACD仍负，20日采纳数值Agent的-0.4；EPS正向信号使其轻于图表Agent的-0.6。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV027",
+    "score_5d": 0.4,
+    "score_20d": 0.7,
+    "confidence": 0.67,
+    "evidence": "FY0/FY1 EPS评分均为1.0且新增4家，是强基本面信号。近20日涨35.38%，末段突破、MACD正向柱扩大，20日采用图表Agent的0.7。短线已高于MA5约10.42%、高于MA20约23.30%，位置偏高，5日采纳数值Agent较谨慎的0.4，未机械沿用突破强度。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV028",
+    "score_5d": 0.2,
+    "score_20d": -0.4,
+    "confidence": 0.55,
+    "evidence": "EPS综合0.5333、FY1仅0.3333且仅2家机构覆盖。近5日涨5.79%、末段红K反弹，5日给轻微正分；图表强调此前持续下行。近20日跌10.02%、低于MA20、MACD仍负且回撤大，中期按数值Agent的-0.4；负柱收窄与短线反弹使其轻于图表Agent的-0.5。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV029",
+    "score_5d": 0.0,
+    "score_20d": -0.3,
+    "confidence": 0.43,
+    "evidence": "FY0/FY1 EPS评分均为0.6667。近5日跌2.91%，但图表见低位反弹后横盘、MACD负向动能收敛；数值指标又显示高于MA20而DIF仍显著为负，短线方向冲突，取中性。近40日大跌40.19%、20日最大回撤28.08%，下降结构尚未扭转，20日采用图表Agent的谨慎负分；日波动率7.01%压低置信度。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV030",
+    "score_5d": 0.0,
+    "score_20d": -0.1,
+    "confidence": 0.44,
+    "evidence": "EPS综合0.7333来自FY0评分1.0，但FY1仅0.3333，期限分化明显。近5日虽涨4.18%，末根缩量回落，图表所见红绿K交替，故5日较两位Agent的0.1降至中性。近20日仅涨1.31%、几乎等于MA20，DIF负而柱略正；此前下降结构尚在，20日取轻微负分，低于数值Agent的0.0但轻于图表Agent的-0.2。",
+    "abstain_reason": null
+  }
+]

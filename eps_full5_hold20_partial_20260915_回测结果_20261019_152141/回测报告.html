@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>策略回测报告</title>
+  <style>
+    :root {
+      --ink:#17242d; --ink-soft:#34434d; --muted:#687781;
+      --line:#d9e2e6; --line-soft:#e8edef;
+      --paper:#ffffff; --bg:#f2f5f6; --bg-deep:#e7f2ef;
+      --navy:#17354b; --gold:#087f6b;
+      --green:#087f6b; --red:#c24d4d;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink);
+      background:
+        radial-gradient(circle at 72% -10%,rgba(40,180,151,.13),transparent 32rem),
+        linear-gradient(180deg,#f8fbfa 0,#f1f5f5 100%);
+      font:16px/1.72 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+      -webkit-font-smoothing:antialiased; }
+    a { color:var(--navy); }
+
+    .layout { display:grid; grid-template-columns:248px minmax(0,1fr); min-height:100vh; align-items:start; }
+    .sidebar { position:sticky; top:0; align-self:start; height:100vh; overflow-y:auto;
+      padding:30px 22px 40px; border:0; border-right:1px solid #dfe7ee;
+      background:linear-gradient(180deg,#fbfdfd 0%,#f1f7f6 100%);
+      box-shadow:10px 0 30px rgba(23,85,74,.05); }
+    .sidebar::-webkit-scrollbar { width:6px; }
+    .sidebar::-webkit-scrollbar-thumb { background:var(--line); border-radius:3px; }
+    main { width:100%; max-width:1440px; min-width:0; margin:0 auto; padding:38px 44px 96px; }
+
+    .brand { display:flex; align-items:center; gap:10px; font:750 13px/1 Inter,sans-serif;
+      letter-spacing:.16em; color:var(--gold); }
+    .brand::before { content:""; width:18px; height:1px; background:var(--gold); }
+    .sidebar h1 { margin:20px 0 30px; font:750 27px/1.3 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;
+      color:var(--navy); letter-spacing:-.025em; }
+    .toc-label { color:var(--muted); font:650 12px/1 Inter,sans-serif;
+      letter-spacing:.12em; text-transform:uppercase; margin-bottom:14px; }
+    .toc { display:flex; flex-direction:column; gap:4px; }
+    .toc a { display:flex; align-items:baseline; gap:12px; padding:10px 11px; margin:0;
+      color:var(--ink-soft); text-decoration:none; font-size:13px; line-height:1.35;
+      border:0; border-radius:10px;
+      transition:background .15s ease, color .15s ease, border-color .15s ease; }
+    .toc a:hover { color:var(--navy); background:var(--bg); }
+    .toc a.active { color:var(--navy); background:var(--bg-deep);
+      box-shadow:inset 3px 0 var(--gold); font-weight:600; }
+    .toc a span { font:700 12px/1 Inter,sans-serif; color:var(--gold);
+      min-width:18px; letter-spacing:.04em; }
+    .toc a.active span { color:var(--navy); }
+
+    .panel { margin-bottom:24px; padding:34px 38px; background:var(--paper);
+      border:1px solid rgba(218,226,236,.9); border-radius:22px; scroll-margin-top:30px;
+      box-shadow:0 18px 50px rgba(23,53,75,.08); }
+    .report-section { position:relative; overflow:hidden; }
+    .hero-panel {
+      padding:38px; border-color:#d5e7e2;
+      background:
+        radial-gradient(circle at 86% 10%,rgba(55,190,157,.20),transparent 18rem),
+        linear-gradient(135deg,#f9fcfb 0%,#edf8f5 58%,#f4f8f7 100%);
+      box-shadow:0 20px 48px rgba(35,88,78,.11);
+    }
+    .hero-panel::after {
+      content:"STRATEGY BACKTEST"; position:absolute; right:28px; top:20px;
+      color:rgba(19,100,84,.07); font:800 42px/1 Inter,sans-serif;
+      letter-spacing:.08em; pointer-events:none;
+    }
+    .hero-panel > * { position:relative; z-index:1; }
+    .hero-panel .section-heading { border-color:#d5e7e2; }
+    .hero-panel .section-heading span { color:#087f6b; background:#dff2ed; }
+    .hero-panel h2 { color:#17354b; }
+    .hero-panel .key-values { grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px 20px; }
+    .hero-panel .key-values div { border-color:#d5e7e2; }
+    .compact-panel { padding:26px 30px; }
+    .compact-panel .section-heading { margin-bottom:18px; padding-bottom:12px; }
+    .section-heading { display:flex; align-items:baseline; gap:14px; margin-bottom:30px;
+      padding-bottom:18px; border-bottom:1px solid var(--line-soft); }
+    .section-heading span { display:grid; place-items:center; width:30px; height:30px; border-radius:10px;
+      font:750 13px/1 Inter,sans-serif; color:var(--gold); background:var(--bg-deep); }
+    h2 { margin:0; font:750 27px/1.3 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;
+      color:var(--navy); letter-spacing:-.01em; }
+    h3 { margin:26px 0 12px; font:700 19px/1.4 Inter,sans-serif; color:var(--ink); }
+    p { margin:0 0 14px; color:var(--ink-soft); }
+    img { display:block; width:100%; max-width:100%; margin:14px auto;
+      border:1px solid var(--line); border-radius:8px; }
+    code { font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; }
+    p code { padding:2px 6px; border-radius:2px; color:var(--navy); background:var(--bg-deep); font-size:12px; }
+
+    .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:20px; }
+    .kpi { min-width:0; padding:18px 20px;
+      border:1px solid #dce5ec; border-radius:16px;
+      background:linear-gradient(145deg,#fff 0%,#f4f7fa 100%);
+      box-shadow:0 8px 22px rgba(24,53,75,.06); }
+    .kpi.positive {
+      border-color:#cde8e0;
+      background:linear-gradient(145deg,#fbfffd 0%,#edf8f4 100%);
+    }
+    .kpi.risk {
+      border-color:#eed5d9;
+      background:linear-gradient(145deg,#fffdfd 0%,#fff2f4 100%);
+    }
+    .kpi-label { display:block; font:650 13px/1.4 Inter,sans-serif;
+      color:var(--muted); margin-bottom:7px; }
+    .kpi-value { display:block; font:750 24px/1.2 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      font-variant-numeric:tabular-nums; color:var(--navy); }
+    .kpi.positive .kpi-value { color:var(--green); }
+    .kpi.risk .kpi-value { color:var(--red); }
+
+    .metric-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:0 22px; margin-top:2px; }
+    .metric-row { display:flex; justify-content:space-between; align-items:baseline;
+      gap:12px; padding:7px 0; border-bottom:1px dotted var(--line); }
+    .metric-name { overflow:hidden; color:var(--muted); font-size:14px; text-overflow:ellipsis; }
+    .metric-value { flex:0 0 auto; font:700 15px/1 Inter,sans-serif;
+      font-variant-numeric:tabular-nums; color:var(--ink); text-align:right; }
+    .metric-value.positive { color:var(--green); }
+    .metric-value.risk { color:var(--red); }
+
+    .key-values { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0 24px; margin:0; }
+    .key-values div { min-width:0; padding:9px 2px 10px; border-bottom:1px solid var(--line-soft); }
+    dt { color:var(--muted); font:650 14px/1.4 Inter,sans-serif;
+      margin-bottom:6px; }
+    dd { margin:0; overflow-wrap:anywhere; font:650 16px/1.55 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink); font-variant-numeric:tabular-nums; }
+    .backtest-id { display:flex; align-items:center; flex-wrap:wrap; gap:10px;
+      margin-bottom:18px; padding-bottom:16px; border-bottom:1px solid #d5e7e2; }
+    .backtest-id span { color:var(--muted); font:650 14px/1.4 Inter,sans-serif; }
+    .backtest-id-value { overflow-wrap:anywhere; font-size:15px; }
+    .copy-backtest-id { padding:5px 10px; border:1px solid var(--line); border-radius:6px;
+      color:#52616c; background:transparent; font:650 12px/1 Inter,sans-serif; cursor:pointer; }
+    .copy-backtest-id:hover:not(:disabled) { color:var(--green); border-color:var(--green); }
+    .copy-backtest-id.copied { color:#fff; border-color:var(--green); background:var(--green); }
+    .copy-backtest-id:disabled { opacity:.45; cursor:not-allowed; }
+
+    .code-block { overflow:hidden; margin-top:14px; border:1px solid #d8e0e5;
+      border-radius:14px; }
+    .code-label { display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:8px 10px 8px 15px; border-bottom:1px solid var(--line);
+      color:#52616c; font:700 12px/1 Inter,sans-serif; letter-spacing:.12em; text-transform:uppercase; }
+    .copy-code { padding:6px 11px; border:1px solid var(--line); border-radius:6px;
+      color:#52616c; background:transparent; font:650 12px/1 Inter,sans-serif;
+      letter-spacing:0; cursor:pointer; text-transform:none; }
+    .copy-code:hover { color:var(--green); border-color:var(--green); }
+    .copy-code.copied { color:#fff; border-color:var(--green); background:var(--green); }
+    pre { margin:0; padding:20px; overflow:auto;
+      font:13.5px/1.75 "SFMono-Regular","Cascadia Code","Microsoft YaHei UI",Consolas,monospace; }
+    .code-block pre { max-height:520px; overflow:auto; color:#24292f;
+      text-shadow:none; filter:none; }
+    .code-block code,.code-block code span { background:transparent !important;
+      box-shadow:none !important; text-shadow:none !important; filter:none !important; }
+    .code-block ::selection,.log ::selection { color:inherit; background:#b7d7ff; }
+    .syntax-keyword { color:#cf222e; font-weight:650; }
+    .syntax-string { color:#0a3069; }
+    .syntax-number { color:#0550ae; }
+    .syntax-comment { color:#6e7781; font-style:italic; }
+    .syntax-definition { color:#8250df; font-weight:650; }
+    .syntax-builtin { color:#953800; }
+
+    .table-wrap { overflow:auto; border:1px solid var(--line-soft); border-radius:14px; }
+    table { width:100%; border-collapse:collapse; white-space:nowrap;
+      font-variant-numeric:tabular-nums; }
+    th { position:sticky; top:0; z-index:1; padding:14px 16px;
+      border-bottom:1px solid var(--line); background:var(--bg);
+      color:#445762; font:700 14px/1.3 Inter,sans-serif; text-align:left; }
+    td { padding:13px 16px; border-top:1px solid var(--line-soft);
+      color:var(--ink-soft); font-size:15px; }
+    tbody tr:nth-child(even) { background:var(--bg); }
+    tbody tr:hover { background:var(--bg-deep); }
+
+    .trade-table-wrap { max-height:520px; overflow:auto; }
+    .direction { font-weight:700; }
+    .buy { color:var(--red); } .sell { color:var(--green); }
+    #交易记录,#运行日志 {
+      content-visibility:auto; contain-intrinsic-size:auto 700px;
+    }
+    .pagination {
+      display:flex; align-items:center; justify-content:flex-end; gap:8px;
+      margin-top:14px; color:var(--muted); font-size:13px;
+    }
+    .pagination button {
+      min-width:58px; padding:7px 10px; color:var(--ink-soft);
+      border:1px solid var(--line); border-radius:8px; background:var(--paper);
+      font:650 12px/1 Inter,sans-serif; cursor:pointer;
+    }
+    .pagination button:hover:not(:disabled) {
+      color:var(--green); border-color:var(--green); background:#f2faf7;
+    }
+    .pagination button:disabled { opacity:.42; cursor:not-allowed; }
+    .page-status { min-width:150px; text-align:center; font-variant-numeric:tabular-nums; }
+
+    .log { max-height:520px; margin:0; padding:20px 22px; overflow:auto;
+      border:1px solid #d8e0e5; border-radius:14px; color:#34424c; background:var(--paper);
+      white-space:pre-wrap; word-break:break-word;
+      font:13.5px/1.75 "SFMono-Regular","Cascadia Code","Microsoft YaHei UI",Consolas,monospace;
+      text-shadow:none; filter:none; }
+    .log code { color:inherit; font:inherit; background:transparent !important;
+      box-shadow:none !important; text-shadow:none !important; filter:none !important; }
+
+    .empty { padding:32px; text-align:center; color:var(--muted); }
+    @media (max-width:1024px) {
+      .layout { grid-template-columns:240px 1fr; }
+      .sidebar { padding:28px 22px; }
+      main { padding:40px 36px 80px; }
+      .panel { padding:30px 30px; }
+    }
+    @media (max-width:860px) {
+      .layout { grid-template-columns:1fr; }
+      .sidebar { display:none; }
+      main { padding:28px 22px 60px; max-width:none; }
+      .panel { padding:26px 22px; }
+      .compact-panel { padding:22px 18px; }
+      .hero-panel::after { display:none; }
+      .hero-panel .key-values { grid-template-columns:1fr 1fr; }
+      .pagination { justify-content:center; flex-wrap:wrap; }
+    }
+    @media print {
+      body { background:white; }
+      .layout { grid-template-columns:1fr; }
+      .sidebar { position:static; height:auto; max-height:none; border-right:0;
+        border-bottom:1px solid #bbb; overflow:visible; }
+      .toc { display:none; }
+      main { padding:0; max-width:none; }
+      .panel { break-inside:avoid; border-color:#bbb; box-shadow:none; }
+      .trade-table-wrap,.code-block pre,.log { max-height:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">SUPERMIND LAB</div>
+      <h1>策略回测报告</h1>
+      <div class="toc-label">Contents · 报告目录</div>
+      <nav class="toc" aria-label="报告目录"><a href="#回测参数" data-target="回测参数"><span>01</span>回测参数</a><a href="#回测摘要" data-target="回测摘要"><span>02</span>回测摘要</a><a href="#收益图" data-target="收益图"><span>03</span>收益图</a><a href="#策略源码" data-target="策略源码"><span>04</span>策略源码</a><a href="#交易记录" data-target="交易记录"><span>05</span>交易记录</a><a href="#运行日志" data-target="运行日志"><span>06</span>运行日志</a></nav>
+    </aside>
+    <main><section class="panel report-section compact-panel hero-panel" id="回测参数"><div class="section-heading"><span>01</span><h2>回测参数</h2></div><div class="backtest-id"><span>回测 ID</span><code class="backtest-id-value">6ad5c50ccd43cdfc2d91d5ce</code><button type="button" class="copy-backtest-id">复制</button></div><dl class="key-values"><div><dt>策略文件</dt><dd>eps_full5_hold20_partial_20260915.py</dd></div><div><dt>开始日期</dt><dd>2026-06-01</dd></div><div><dt>结束日期</dt><dd>2026-10-16</dd></div><div><dt>初始资金</dt><dd>10000000</dd></div><div><dt>回测频率</dt><dd>DAILY</dd></div><div><dt>市场类型</dt><dd>STOCK</dd></div></dl></section>
+<section class="panel report-section compact-panel" id="回测摘要"><div class="section-heading"><span>02</span><h2>回测摘要</h2></div><div class="kpi-grid"><article class="kpi risk"><span class="kpi-label">策略收益率</span><strong class="kpi-value">-12.74%</strong></article><article class="kpi risk"><span class="kpi-label">策略年化收益率</span><strong class="kpi-value">-30.68%</strong></article><article class="kpi risk"><span class="kpi-label">sharpe</span><strong class="kpi-value">-0.5825</strong></article><article class="kpi risk"><span class="kpi-label">最大回撤</span><strong class="kpi-value">20.69%</strong></article></div><div class="metric-list"><div class="metric-row"><span class="metric-name">初始资金</span><span class="metric-value neutral">10,000,000.00</span></div><div class="metric-row"><span class="metric-name">最终权益</span><span class="metric-value neutral">8,725,657.88</span></div><div class="metric-row"><span class="metric-name">基准</span><span class="metric-value neutral">000985.CSI</span></div><div class="metric-row"><span class="metric-name">基准收益率</span><span class="metric-value risk">-16.95%</span></div><div class="metric-row"><span class="metric-name">基准年化收益率</span><span class="metric-value risk">-39.30%</span></div><div class="metric-row"><span class="metric-name">alpha</span><span class="metric-value positive">0.0091</span></div><div class="metric-row"><span class="metric-name">beta</span><span class="metric-value neutral">0.8095</span></div><div class="metric-row"><span class="metric-name">information_ratio</span><span class="metric-value positive">0.4933</span></div><div class="metric-row"><span class="metric-name">downside_risk</span><span class="metric-value risk">35.90%</span></div><div class="metric-row"><span class="metric-name">tracking_error</span><span class="metric-value risk">50.90%</span></div><div class="metric-row"><span class="metric-name">sortino</span><span class="metric-value risk">-0.8874</span></div><div class="metric-row"><span class="metric-name">volatility</span><span class="metric-value risk">54.70%</span></div></div></section>
+<section class="panel report-section" id="收益图"><div class="section-heading"><span>03</span><h2>收益图</h2></div><p><img src="https://supermind.10jqka.com.cn/research/users/upload/research_strategy/3f5f09f89d9b48bbae92617f801c91de/profit_chart.png" alt="收益图" loading="lazy"></p></section>
+<section class="panel report-section" id="策略源码"><div class="section-heading"><span>04</span><h2>策略源码</h2></div><div class="code-block"><div class="code-label"><span>python</span><button type="button" class="copy-code">复制</button></div><pre><code><span class="syntax-string">&quot;&quot;&quot;Partial EPS backtest: up to five stocks, 20-day hold, no cooldown.
+
+Backtest window: 2026-06-01 through 2026-10-16, DAILY, STOCK.
+The saved EPS snapshots end on 2026-09-15. No later signals are available;
+results after that date are a data-limited continuation, not a full-period test.
+No stock is sold before it has completed 20 trading sessions. New signals
+wait for available cash and a free slot. Any held-stock top-up keeps the
+original entry clock; an empty eligible stock set necessarily leaves cash.
+&quot;&quot;&quot;</span>
+
+<span class="syntax-keyword">from</span> mindgo_api <span class="syntax-keyword">import</span> *
+<span class="syntax-keyword">import</span> csv
+<span class="syntax-keyword">import</span> io
+
+
+SIGNAL_FILE = <span class="syntax-string">&quot;mcp/AI主观量化/eps_event_recent_partial_to_20260915.csv&quot;</span>
+CALENDAR_FILE = <span class="syntax-string">&quot;mcp/AI主观量化/trade_days_2024_2026_oct.csv&quot;</span>
+BACKTEST_START = <span class="syntax-string">&quot;2026-06-01&quot;</span>
+BACKTEST_END = <span class="syntax-string">&quot;2026-10-16&quot;</span>
+SNAPSHOT_CUTOFF = <span class="syntax-number">20260915</span>
+MAX_POSITIONS = <span class="syntax-number">5</span>
+HOLDING_DAYS = <span class="syntax-number">20</span>
+TARGET_GROSS = <span class="syntax-number">0.998</span>  <span class="syntax-comment"># Leave room for fees and whole-lot rounding.</span>
+
+
+<span class="syntax-keyword">def</span> <span class="syntax-definition">init</span>(context):
+    set_benchmark(<span class="syntax-string">&quot;000985.CSI&quot;</span>)
+    g.trade_index = {}
+    <span class="syntax-keyword">for</span> index, row <span class="syntax-keyword">in</span> <span class="syntax-builtin">enumerate</span>(csv.DictReader(io.StringIO(
+        read_file(CALENDAR_FILE).decode(<span class="syntax-string">&quot;utf-8-sig&quot;</span>)
+    ))):
+        g.trade_index[row[<span class="syntax-string">&quot;trade_date&quot;</span>]] = index
+    <span class="syntax-keyword">if</span> BACKTEST_START <span class="syntax-keyword">not</span> <span class="syntax-keyword">in</span> g.trade_index <span class="syntax-keyword">or</span> BACKTEST_END <span class="syntax-keyword">not</span> <span class="syntax-keyword">in</span> g.trade_index:
+        <span class="syntax-keyword">raise</span> <span class="syntax-builtin">ValueError</span>(<span class="syntax-string">&quot;Trade calendar does not cover the full backtest&quot;</span>)
+    g.events = {}
+    <span class="syntax-keyword">for</span> row <span class="syntax-keyword">in</span> csv.DictReader(io.StringIO(read_file(SIGNAL_FILE).decode(<span class="syntax-string">&quot;utf-8-sig&quot;</span>))):
+        trade_date = row[<span class="syntax-string">&quot;trade_date&quot;</span>]
+        <span class="syntax-keyword">if</span> <span class="syntax-builtin">int</span>(row[<span class="syntax-string">&quot;end_date&quot;</span>]) &gt; SNAPSHOT_CUTOFF:
+            <span class="syntax-keyword">raise</span> <span class="syntax-builtin">ValueError</span>(<span class="syntax-string">&quot;Unexpected EPS snapshot after the partial cutoff&quot;</span>)
+        <span class="syntax-keyword">if</span> trade_date <span class="syntax-keyword">not</span> <span class="syntax-keyword">in</span> g.trade_index:
+            <span class="syntax-keyword">raise</span> <span class="syntax-builtin">ValueError</span>(<span class="syntax-string">&quot;Signal trade date is absent from the calendar: &quot;</span> + trade_date)
+        <span class="syntax-keyword">if</span> <span class="syntax-builtin">int</span>(row[<span class="syntax-string">&quot;end_date&quot;</span>]) &gt;= <span class="syntax-builtin">int</span>(trade_date.replace(<span class="syntax-string">&quot;-&quot;</span>, <span class="syntax-string">&quot;&quot;</span>)):
+            <span class="syntax-keyword">raise</span> <span class="syntax-builtin">ValueError</span>(<span class="syntax-string">&quot;Signal uses a same-day or future EPS snapshot&quot;</span>)
+        g.events.setdefault(trade_date, []).append(row)
+    g.entry_index = {}  <span class="syntax-comment"># Set on the first BUY fill; top-ups do not reset it.</span>
+    g.pending = {}  <span class="syntax-comment"># Unfilled signals wait for a cash-funded entry.</span>
+    g.last_subscribed = <span class="syntax-builtin">set</span>()
+    subscribe(<span class="syntax-string">&quot;000985.CSI&quot;</span>)
+    <span class="syntax-builtin">print</span>(<span class="syntax-string">&quot;EPS partial loaded&quot;</span>, <span class="syntax-builtin">sum</span>(<span class="syntax-builtin">len</span>(rows) <span class="syntax-keyword">for</span> rows <span class="syntax-keyword">in</span> g.events.values()),
+          <span class="syntax-string">&quot;events; saved source coverage&quot;</span>, SNAPSHOT_CUTOFF)
+
+
+<span class="syntax-keyword">def</span> <span class="syntax-definition">before_trading</span>(context):
+    today = context.portfolio.datetime.date().isoformat()
+    needed = <span class="syntax-builtin">set</span>(row[<span class="syntax-string">&quot;trade_code&quot;</span>] <span class="syntax-keyword">for</span> row <span class="syntax-keyword">in</span> g.events.get(today, []))
+    needed.update(g.pending)
+    needed.update(context.portfolio.positions.keys())
+    added = needed - g.last_subscribed
+    <span class="syntax-keyword">if</span> added:
+        subscribe(<span class="syntax-builtin">sorted</span>(added))
+    removed = g.last_subscribed - needed
+    <span class="syntax-keyword">if</span> removed:
+        unsubscribe(<span class="syntax-builtin">sorted</span>(removed))
+    g.last_subscribed = needed
+
+
+<span class="syntax-keyword">def</span> <span class="syntax-definition">on_trade</span>(context, trade):
+    <span class="syntax-keyword">if</span> trade.side == SIDE.BUY <span class="syntax-keyword">and</span> trade.order_book_id <span class="syntax-keyword">not</span> <span class="syntax-keyword">in</span> g.entry_index:
+        today = context.portfolio.datetime.date().isoformat()
+        g.entry_index[trade.order_book_id] = g.trade_index[today]
+    <span class="syntax-keyword">if</span> trade.side == SIDE.BUY:
+        g.pending.pop(trade.order_book_id, <span class="syntax-keyword">None</span>)
+
+
+<span class="syntax-keyword">def</span> <span class="syntax-definition">open_auction</span>(context, bar_dict):
+    today = context.portfolio.datetime.date().isoformat()
+    <span class="syntax-keyword">if</span> today &lt; BACKTEST_START <span class="syntax-keyword">or</span> today &gt; BACKTEST_END:
+        <span class="syntax-keyword">return</span>
+    day_index = g.trade_index.get(today)
+    <span class="syntax-keyword">if</span> day_index <span class="syntax-keyword">is</span> <span class="syntax-keyword">None</span>:
+        <span class="syntax-keyword">return</span>
+    held_before = <span class="syntax-builtin">set</span>(context.portfolio.positions.keys())
+    <span class="syntax-keyword">for</span> symbol <span class="syntax-keyword">in</span> held_before:
+        g.pending.pop(symbol, <span class="syntax-keyword">None</span>)
+    <span class="syntax-keyword">for</span> row <span class="syntax-keyword">in</span> g.events.get(today, []):
+        symbol = row[<span class="syntax-string">&quot;trade_code&quot;</span>]
+        <span class="syntax-keyword">if</span> symbol <span class="syntax-keyword">not</span> <span class="syntax-keyword">in</span> held_before:
+            <span class="syntax-comment"># A later crossing replaces an earlier queued crossing for the</span>
+            <span class="syntax-comment"># same stock. Signals received while holding are not replayed.</span>
+            g.pending[symbol] = row
+    <span class="syntax-keyword">for</span> symbol <span class="syntax-keyword">in</span> <span class="syntax-builtin">list</span>(g.entry_index):
+        <span class="syntax-keyword">if</span> symbol <span class="syntax-keyword">not</span> <span class="syntax-keyword">in</span> held_before:
+            <span class="syntax-keyword">del</span> g.entry_index[symbol]
+    <span class="syntax-keyword">for</span> symbol <span class="syntax-keyword">in</span> held_before:
+        <span class="syntax-keyword">if</span> symbol <span class="syntax-keyword">not</span> <span class="syntax-keyword">in</span> g.entry_index:
+            <span class="syntax-comment"># Conservative if a position is unexpectedly missing its fill record.</span>
+            g.entry_index[symbol] = day_index
+            <span class="syntax-builtin">print</span>(<span class="syntax-string">&quot;MISSING_ENTRY_DATE&quot;</span>, today, symbol)
+
+    due = <span class="syntax-builtin">set</span>()
+    <span class="syntax-keyword">for</span> symbol <span class="syntax-keyword">in</span> <span class="syntax-builtin">sorted</span>(held_before):
+        <span class="syntax-keyword">if</span> day_index - g.entry_index[symbol] &gt;= HOLDING_DAYS:
+            due.add(symbol)
+            order_id = order_target_percent(symbol, <span class="syntax-number">0</span>)
+            <span class="syntax-builtin">print</span>(<span class="syntax-string">&quot;EXIT_20D&quot;</span>, today, symbol, order_id)
+
+    held = <span class="syntax-builtin">set</span>(context.portfolio.positions.keys())
+    <span class="syntax-keyword">for</span> symbol <span class="syntax-keyword">in</span> held_before - held:
+        g.entry_index.pop(symbol, <span class="syntax-keyword">None</span>)
+    slots = <span class="syntax-builtin">max</span>(<span class="syntax-number">0</span>, MAX_POSITIONS - <span class="syntax-builtin">len</span>(held))
+    new_symbols = []
+    ranked = <span class="syntax-builtin">sorted</span>(
+        g.pending.values(),
+        key=<span class="syntax-keyword">lambda</span> row: (-<span class="syntax-builtin">float</span>(row[<span class="syntax-string">&quot;forecast_score&quot;</span>]), row[<span class="syntax-string">&quot;trade_code&quot;</span>]),
+    )
+    <span class="syntax-keyword">for</span> row <span class="syntax-keyword">in</span> ranked:
+        <span class="syntax-keyword">if</span> <span class="syntax-builtin">len</span>(new_symbols) &gt;= slots:
+            <span class="syntax-keyword">break</span>
+        symbol = row[<span class="syntax-string">&quot;trade_code&quot;</span>]
+        <span class="syntax-keyword">if</span> symbol <span class="syntax-keyword">in</span> held <span class="syntax-keyword">or</span> symbol <span class="syntax-keyword">in</span> due <span class="syntax-keyword">or</span> symbol <span class="syntax-keyword">in</span> new_symbols:
+            <span class="syntax-keyword">continue</span>
+        <span class="syntax-keyword">try</span>:
+            bar = bar_dict[symbol]
+            info = get_security_info(symbol)
+            age = (context.portfolio.datetime.date() - info.start_date.date()).days
+        <span class="syntax-keyword">except</span> (<span class="syntax-builtin">KeyError</span>, <span class="syntax-builtin">AttributeError</span>, <span class="syntax-builtin">ValueError</span>):
+            <span class="syntax-builtin">print</span>(<span class="syntax-string">&quot;SKIP_MISSING_MARKET&quot;</span>, today, symbol)
+            <span class="syntax-keyword">continue</span>
+        <span class="syntax-keyword">if</span> age &lt; <span class="syntax-number">120</span> <span class="syntax-keyword">or</span> bar.is_st <span class="syntax-keyword">or</span> bar.is_paused:
+            <span class="syntax-keyword">continue</span>
+        <span class="syntax-keyword">if</span> bar.<span class="syntax-builtin">open</span> &lt;= <span class="syntax-number">0</span> <span class="syntax-keyword">or</span> bar.high_limit &lt;= <span class="syntax-number">0</span> <span class="syntax-keyword">or</span> bar.<span class="syntax-builtin">open</span> &gt;= bar.high_limit:
+            <span class="syntax-keyword">continue</span>
+        new_symbols.append(symbol)
+
+    <span class="syntax-keyword">if</span> <span class="syntax-keyword">not</span> held <span class="syntax-keyword">and</span> <span class="syntax-keyword">not</span> new_symbols:
+        <span class="syntax-builtin">print</span>(<span class="syntax-string">&quot;CASH_NO_ELIGIBLE_EPS_SIGNAL&quot;</span>, today, <span class="syntax-string">&quot;pending&quot;</span>, <span class="syntax-builtin">len</span>(g.pending))
+        <span class="syntax-keyword">return</span>
+
+    <span class="syntax-comment"># Never reduce an unexpired holding to finance a new signal. Split only</span>
+    <span class="syntax-comment"># the cash now available among the new EPS names.</span>
+    submitted = <span class="syntax-number">0</span>
+    <span class="syntax-keyword">if</span> new_symbols <span class="syntax-keyword">and</span> context.portfolio.available_cash &gt; <span class="syntax-number">0</span>:
+        budget_each = (context.portfolio.available_cash * TARGET_GROSS /
+                       <span class="syntax-builtin">len</span>(new_symbols))
+        <span class="syntax-keyword">for</span> symbol <span class="syntax-keyword">in</span> new_symbols:
+            wait_days = day_index - g.trade_index[g.pending[symbol][<span class="syntax-string">&quot;trade_date&quot;</span>]]
+            order_id = order_value(symbol, budget_each)
+            <span class="syntax-builtin">print</span>(<span class="syntax-string">&quot;BUY_EPS&quot;</span>, today, symbol, budget_each, <span class="syntax-string">&quot;wait_days&quot;</span>,
+                  wait_days, order_id)
+            submitted += order_id <span class="syntax-keyword">is</span> <span class="syntax-keyword">not</span> <span class="syntax-keyword">None</span>
+    <span class="syntax-keyword">elif</span> new_symbols:
+        <span class="syntax-builtin">print</span>(<span class="syntax-string">&quot;WAIT_FOR_CASH&quot;</span>, today, <span class="syntax-builtin">len</span>(g.pending))
+    <span class="syntax-keyword">if</span> submitted:
+        <span class="syntax-comment"># The auction orders may fill after this callback. Spend any residual</span>
+        <span class="syntax-comment"># cash on a later session, after the fills and cash are observable.</span>
+        <span class="syntax-keyword">return</span>
+
+    actual = <span class="syntax-builtin">set</span>(context.portfolio.positions.keys()) - due
+    <span class="syntax-keyword">if</span> actual:
+        <span class="syntax-comment"># On membership changes, spend residual cash on the smallest held</span>
+        <span class="syntax-comment"># positions first. This gets as close to equal weight as possible</span>
+        <span class="syntax-comment"># without selling an unexpired lot.</span>
+        total = context.portfolio.portfolio_value
+        invested = <span class="syntax-builtin">sum</span>(context.portfolio.positions[s].market_value <span class="syntax-keyword">for</span> s <span class="syntax-keyword">in</span> actual)
+        budget = <span class="syntax-builtin">min</span>(context.portfolio.available_cash,
+                     <span class="syntax-builtin">max</span>(<span class="syntax-number">0.0</span>, TARGET_GROSS * total - invested))
+        <span class="syntax-keyword">if</span> budget &gt; <span class="syntax-number">0</span>:
+            values = {s: context.portfolio.positions[s].market_value
+                      <span class="syntax-keyword">for</span> s <span class="syntax-keyword">in</span> actual}
+            low = <span class="syntax-builtin">min</span>(values.values())
+            high = <span class="syntax-builtin">max</span>(values.values()) + budget
+            <span class="syntax-keyword">for</span> _ <span class="syntax-keyword">in</span> <span class="syntax-builtin">range</span>(<span class="syntax-number">30</span>):
+                mid = (low + high) / <span class="syntax-number">2.0</span>
+                required = <span class="syntax-builtin">sum</span>(<span class="syntax-builtin">max</span>(<span class="syntax-number">0.0</span>, mid - value)
+                               <span class="syntax-keyword">for</span> value <span class="syntax-keyword">in</span> values.values())
+                <span class="syntax-keyword">if</span> required &gt; budget:
+                    high = mid
+                <span class="syntax-keyword">else</span>:
+                    low = mid
+            <span class="syntax-keyword">for</span> symbol <span class="syntax-keyword">in</span> <span class="syntax-builtin">sorted</span>(actual, key=<span class="syntax-keyword">lambda</span> s: (values[s], s)):
+                target_value = <span class="syntax-builtin">max</span>(values[symbol], low)
+                top_up = target_value - values[symbol]
+                <span class="syntax-keyword">if</span> top_up &gt; <span class="syntax-number">0.001</span> * total:
+                    order_value(symbol, top_up)
+
+
+<span class="syntax-keyword">def</span> <span class="syntax-definition">handle_bar</span>(context, bar_dict):
+    <span class="syntax-keyword">pass</span></code></pre></div></section>
+<section class="panel report-section" id="交易记录"><div class="section-heading"><span>05</span><h2>交易记录</h2></div><div class="table-wrap trade-table-wrap"><table class="data-table trade-table"><thead><tr><th>交易时间</th><th>合约/证券代码</th><th>买卖方向</th><th>税费</th><th>佣金</th><th>成交数量</th><th>成交价格</th><th>交易成本</th></tr></thead><tbody id="trade-body"></tbody></table></div><div class="pagination" id="trade-pagination" aria-label="交易记录分页"><button type="button" data-page-action="first">首页</button><button type="button" data-page-action="prev">上一页</button><span class="page-status" data-page-status>尚未加载</span><button type="button" data-page-action="next">下一页</button><button type="button" data-page-action="last">末页</button></div></section>
+<section class="panel report-section" id="运行日志"><div class="section-heading"><span>06</span><h2>运行日志</h2></div><pre class="log"><code id="log-content">滚动到此处后加载日志……</code></pre><div class="pagination" id="log-pagination" aria-label="运行日志分页"><button type="button" data-page-action="first">首页</button><button type="button" data-page-action="prev">上一页</button><span class="page-status" data-page-status>尚未加载</span><button type="button" data-page-action="next">下一页</button><button type="button" data-page-action="last">末页</button></div></section></main>
+  </div>
+  <script type="application/json" id="trade-data">[["2026-06-01 09:26:00","300394.SZ","BUY","0.0","2485.13","21600.0","460.2098","2485.13"],["2026-06-02 09:26:00","601699.SH","BUY","0.0","14.13","3200.0","17.6576","14.13"],["2026-06-05 09:26:00","000415.SZ","BUY","0.0","5.00","100.0","3.9239","5.00"],["2026-06-12 09:26:00","000672.SZ","BUY","0.0","5.00","400.0","16.4664","5.00"],["2026-06-12 09:26:00","002648.SZ","BUY","0.0","5.00","300.0","23.3233","5.00"],["2026-06-30 09:26:00","300394.SZ","SELL","8911.8792","2227.97","30240.0","294.7050","11139.85"],["2026-06-30 09:26:00","002832.SZ","BUY","0.0","2220.32","432800.0","20.5205","2220.32"],["2026-07-01 09:26:00","601699.SH","SELL","45.682272","11.42","3200.0","14.2757","57.10"],["2026-07-01 09:26:00","000700.SZ","BUY","0.0","15.98","4400.0","14.5245","15.98"],["2026-07-06 09:26:00","000415.SZ","SELL","0.44155800000000006","5.00","100.0","4.4156","5.44"],["2026-07-13 09:26:00","000672.SZ","SELL","7.7242679999999995","5.00","400.0","19.3107","12.72"],["2026-07-13 09:26:00","002648.SZ","SELL","6.80319","5.00","300.0","22.6773","11.80"],["2026-07-13 09:26:00","000301.SZ","BUY","0.0","5.00","400.0","12.3023","5.00"],["2026-07-16 09:26:00","000415.SZ","BUY","0.0","5.00","1200.0","4.4244","5.00"],["2026-07-28 09:26:00","002832.SZ","SELL","10247.10264","2561.78","432800.0","23.6763","12808.88"],["2026-07-28 09:26:00","603345.SH","BUY","0.0","1275.87","59700.0","85.4854","1275.87"],["2026-07-28 09:26:00","000729.SZ","BUY","0.0","1276.93","411500.0","12.4124","1276.93"],["2026-07-29 09:26:00","000700.SZ","SELL","45.49445999999999","11.37","4400.0","10.3396","56.87"],["2026-07-29 09:26:00","000831.SZ","BUY","0.0","17.44","1500.0","46.5065","17.44"],["2026-08-10 09:26:00","000301.SZ","SELL","5.2347600000000005","5.00","400.0","13.0869","10.23"],["2026-08-10 09:26:00","601666.SH","BUY","0.0","5.00","800.0","8.9089","5.00"],["2026-08-13 09:26:00","000415.SZ","SELL","5.382612000000001","5.00","1200.0","4.4855","10.38"],["2026-08-13 09:26:00","002568.SZ","BUY","0.0","5.00","200.0","19.5796","5.00"],["2026-08-25 09:26:00","000729.SZ","SELL","4678.18713","1169.55","411500.0","11.3686","5847.73"],["2026-08-25 09:26:00","603345.SH","SELL","4684.149162000001","1171.04","59700.0","78.4615","5855.19"],["2026-08-25 09:26:00","000526.SZ","BUY","0.0","1165.65","134700.0","34.6146","1165.65"],["2026-08-25 09:26:00","603997.SH","BUY","0.0","1166.19","409500.0","11.3914","1166.19"],["2026-08-26 09:26:00","000831.SZ","SELL","86.88303","21.72","1500.0","57.9220","108.60"],["2026-08-26 09:26:00","601211.SH","BUY","0.0","26.93","6200.0","17.3774","26.93"],["2026-09-07 09:26:00","601666.SH","SELL","7.424568","5.00","800.0","9.2807","12.42"],["2026-09-07 09:26:00","300592.SZ","BUY","0.0","5.00","500.0","16.6166","5.00"],["2026-09-10 09:26:00","002568.SZ","SELL","3.6223739999999998","5.00","200.0","18.1119","8.62"],["2026-09-10 09:26:00","600039.SH","BUY","0.0","5.00","400.0","9.2092","5.00"],["2026-09-22 09:26:00","000526.SZ","SELL","4828.202964000001","1207.05","134700.0","35.8441","6035.25"],["2026-09-22 09:26:00","603997.SH","SELL","5649.539805","1412.38","409500.0","13.7962","7061.92"],["2026-09-22 09:26:00","601233.SH","BUY","0.0","1304.87","213700.0","24.4244","1304.87"],["2026-09-22 09:26:00","601872.SH","BUY","0.0","1305.00","234900.0","22.2222","1305.00"],["2026-09-23 09:26:00","601211.SH","SELL","109.50638400000001","27.38","6200.0","17.6623","136.88"],["2026-09-23 09:26:00","603019.SH","BUY","0.0","31.67","1500.0","84.4444","31.67"],["2026-10-13 09:26:00","300592.SZ","SELL","8.3916","5.00","500.0","16.7832","13.39"],["2026-10-13 09:26:00","000408.SZ","BUY","0.0","5.00","100.0","70.8608","5.00"],["2026-10-16 09:26:00","600039.SH","SELL","3.592404","5.00","400.0","8.9810","8.59"],["2026-10-16 09:26:00","000977.SZ","BUY","0.0","5.00","100.0","58.0580","5.00"]]</script>
+  <script type="application/json" id="log-data">["MindGo research_strategy run log","source_file=/home/jovyan/work/mcp/AI主观量化/eps_full5_hold20_partial_20260915.py","start_date=2026-06-01","end_date=2026-10-16","api_start_date=20260601","api_end_date=20261016","capital_base=10000000","frequency=DAILY","stock_market=STOCK","2026-10-19 15:21:42.533875 - [2026-06-01 00:00:00] - INFO - 000985.CSI","2026-10-19 15:21:42.535861 - [2026-06-01 00:00:00] - INFO - EPS partial loaded 178 events; saved source coverage 20260915","2026-10-19 15:21:42.542687 - [2026-06-01 09:26:00] - INFO - BUY_EPS 2026-06-01 300394.SZ 9980000.0 wait_days 0 21b6467dda9c45a9917e5533f6510722","2026-10-19 15:21:44.534374 - [2026-06-02 09:26:00] - INFO - BUY_EPS 2026-06-02 601699.SH 56870.298815301256 wait_days 0 0786627b24804829933778b201d01e14","2026-10-19 15:21:44.548343 - [2026-06-05 09:26:00] - INFO - BUY_EPS 2026-06-05 000415.SZ 464.7618515252561 wait_days 0 6e69c27d15434ef5b2b4e57ef6645465","2026-10-19 15:21:44.567117 - [2026-06-08 09:26:00] - WARN - 000672.SZ 下单股数为0,订单无效.","2026-10-19 15:21:44.567219 - [2026-06-08 09:26:00] - INFO - BUY_EPS 2026-06-08 000672.SZ 34.08231776262803 wait_days 0 None","2026-10-19 15:21:44.567362 - [2026-06-08 09:26:00] - WARN - 688036.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.567416 - [2026-06-08 09:26:00] - INFO - BUY_EPS 2026-06-08 688036.SH 34.08231776262803 wait_days 0 None","2026-10-19 15:21:44.575981 - [2026-06-09 09:26:00] - WARN - 000672.SZ 下单股数为0,订单无效.","2026-10-19 15:21:44.576068 - [2026-06-09 09:26:00] - INFO - BUY_EPS 2026-06-09 000672.SZ 34.08231776262803 wait_days 1 None","2026-10-19 15:21:44.576171 - [2026-06-09 09:26:00] - WARN - 688036.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.576217 - [2026-06-09 09:26:00] - INFO - BUY_EPS 2026-06-09 688036.SH 34.08231776262803 wait_days 1 None","2026-10-19 15:21:44.589418 - [2026-06-10 09:26:00] - WARN - 000672.SZ 下单股数为0,订单无效.","2026-10-19 15:21:44.589501 - [2026-06-10 09:26:00] - INFO - BUY_EPS 2026-06-10 000672.SZ 34.08231776262803 wait_days 2 None","2026-10-19 15:21:44.589598 - [2026-06-10 09:26:00] - WARN - 688036.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.589641 - [2026-06-10 09:26:00] - INFO - BUY_EPS 2026-06-10 688036.SH 34.08231776262803 wait_days 2 None","2026-10-19 15:21:44.631203 - [2026-06-11 09:26:00] - WARN - 000672.SZ 下单股数为0,订单无效.","2026-10-19 15:21:44.631301 - [2026-06-11 09:26:00] - INFO - BUY_EPS 2026-06-11 000672.SZ 34.08231776262803 wait_days 3 None","2026-10-19 15:21:44.631426 - [2026-06-11 09:26:00] - WARN - 600011.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.631475 - [2026-06-11 09:26:00] - INFO - BUY_EPS 2026-06-11 600011.SH 34.08231776262803 wait_days 0 None","2026-10-19 15:21:44.634270 - [2026-06-12 04:00:00] - INFO - 300394.SZ在2026-06-12日发生了分红：每股税前分红0.7","2026-10-19 15:21:44.634386 - [2026-06-12 04:00:00] - INFO - 300394.SZ在2026-06-12日发生了转增股：每股变成1.40股","2026-10-19 15:21:44.654577 - [2026-06-12 09:26:00] - INFO - BUY_EPS 2026-06-12 000672.SZ 7578.962317762627 wait_days 4 992bd74382fa4f2dadfc1052ba171497","2026-10-19 15:21:44.655036 - [2026-06-12 09:26:00] - INFO - BUY_EPS 2026-06-12 002648.SZ 7578.962317762627 wait_days 0 561d0fa8323b4718badaf879455ad9e6","2026-10-19 15:21:44.768887 - [2026-06-30 04:00:00] - INFO - 601699.SH在2026-06-30日发生了分红：每股税前分红0.187","2026-10-19 15:21:44.769955 - [2026-06-30 09:26:00] - INFO - EXIT_20D 2026-06-30 300394.SZ 05f77a2ec8b346c9b508147c844b46e6","2026-10-19 15:21:44.770598 - [2026-06-30 09:26:00] - INFO - BUY_EPS 2026-06-30 002832.SZ 8885126.617273524 wait_days 3 5826919568654879bc44b8b921b30786","2026-10-19 15:21:44.774691 - [2026-07-01 09:26:00] - INFO - EXIT_20D 2026-07-01 601699.SH 8692c527dee242f3abd06de3207254dd","2026-10-19 15:21:44.775299 - [2026-07-01 09:26:00] - INFO - BUY_EPS 2026-07-01 000700.SZ 64934.80343140594 wait_days 7 92607e3ef2f84f49a6a5492ba1738a28","2026-10-19 15:21:44.821077 - [2026-07-06 09:26:00] - INFO - EXIT_20D 2026-07-06 000415.SZ 555d4b363e97431b9859bf7319ab96dd","2026-10-19 15:21:44.821425 - [2026-07-06 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.821506 - [2026-07-06 09:26:00] - INFO - BUY_EPS 2026-07-06 603345.SH 1574.0743214439447 wait_days 2 None","2026-10-19 15:21:44.830616 - [2026-07-07 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.830696 - [2026-07-07 09:26:00] - INFO - BUY_EPS 2026-07-07 603345.SH 1574.0743214439447 wait_days 3 None","2026-10-19 15:21:44.834508 - [2026-07-08 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.834585 - [2026-07-08 09:26:00] - INFO - BUY_EPS 2026-07-08 603345.SH 1574.0743214439447 wait_days 4 None","2026-10-19 15:21:44.857167 - [2026-07-09 09:26:00] - WARN - 688017.SH 下单股数小于最低下单数量 200,订单无效","2026-10-19 15:21:44.857245 - [2026-07-09 09:26:00] - INFO - BUY_EPS 2026-07-09 688017.SH 1574.0743214439447 wait_days 0 None","2026-10-19 15:21:44.866429 - [2026-07-10 09:26:00] - WARN - 688017.SH 下单股数小于最低下单数量 200,订单无效","2026-10-19 15:21:44.866503 - [2026-07-10 09:26:00] - INFO - BUY_EPS 2026-07-10 688017.SH 1574.0743214439447 wait_days 1 None","2026-10-19 15:21:44.879964 - [2026-07-13 09:26:00] - INFO - EXIT_20D 2026-07-13 000672.SZ 0d4f83f0277d4dd69924e91d5fc72b04","2026-10-19 15:21:44.880384 - [2026-07-13 09:26:00] - INFO - EXIT_20D 2026-07-13 002648.SZ 86212c9e00d24fae9fb718f5c4d257f2","2026-10-19 15:21:44.880859 - [2026-07-13 09:26:00] - WARN - 688017.SH 下单股数小于最低下单数量 200,订单无效","2026-10-19 15:21:44.880927 - [2026-07-13 09:26:00] - INFO - BUY_EPS 2026-07-13 688017.SH 5349.333000786647 wait_days 2 None","2026-10-19 15:21:44.881011 - [2026-07-13 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.881054 - [2026-07-13 09:26:00] - INFO - BUY_EPS 2026-07-13 603345.SH 5349.333000786647 wait_days 7 None","2026-10-19 15:21:44.881481 - [2026-07-13 09:26:00] - INFO - BUY_EPS 2026-07-13 000301.SZ 5349.333000786647 wait_days 2 af3fe601c615443184560a5b1b736053","2026-10-19 15:21:44.884883 - [2026-07-14 09:26:00] - WARN - 688017.SH 下单股数小于最低下单数量 200,订单无效","2026-10-19 15:21:44.884958 - [2026-07-14 09:26:00] - INFO - BUY_EPS 2026-07-14 688017.SH 5565.967417179972 wait_days 3 None","2026-10-19 15:21:44.885048 - [2026-07-14 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.885094 - [2026-07-14 09:26:00] - INFO - BUY_EPS 2026-07-14 603345.SH 5565.967417179972 wait_days 8 None","2026-10-19 15:21:44.888317 - [2026-07-15 09:26:00] - WARN - 688017.SH 下单股数小于最低下单数量 200,订单无效","2026-10-19 15:21:44.888399 - [2026-07-15 09:26:00] - INFO - BUY_EPS 2026-07-15 688017.SH 5565.967417179972 wait_days 4 None","2026-10-19 15:21:44.888488 - [2026-07-15 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.888533 - [2026-07-15 09:26:00] - INFO - BUY_EPS 2026-07-15 603345.SH 5565.967417179972 wait_days 9 None","2026-10-19 15:21:44.901515 - [2026-07-16 09:26:00] - WARN - 688017.SH 下单股数小于最低下单数量 200,订单无效","2026-10-19 15:21:44.901600 - [2026-07-16 09:26:00] - INFO - BUY_EPS 2026-07-16 688017.SH 5565.967417179972 wait_days 5 None","2026-10-19 15:21:44.902045 - [2026-07-16 09:26:00] - INFO - BUY_EPS 2026-07-16 000415.SZ 5565.967417179972 wait_days 0 1bec3829c8394dd4b128ab83946b6486","2026-10-19 15:21:44.920887 - [2026-07-17 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.920967 - [2026-07-17 09:26:00] - INFO - BUY_EPS 2026-07-17 603345.SH 5828.259442359943 wait_days 1 None","2026-10-19 15:21:44.948553 - [2026-07-20 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.948631 - [2026-07-20 09:26:00] - INFO - BUY_EPS 2026-07-20 603345.SH 5828.259442359943 wait_days 2 None","2026-10-19 15:21:44.952602 - [2026-07-21 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.952677 - [2026-07-21 09:26:00] - INFO - BUY_EPS 2026-07-21 603345.SH 5828.259442359943 wait_days 3 None","2026-10-19 15:21:44.956342 - [2026-07-22 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.956425 - [2026-07-22 09:26:00] - INFO - BUY_EPS 2026-07-22 603345.SH 5828.259442359943 wait_days 4 None","2026-10-19 15:21:44.965090 - [2026-07-23 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.965165 - [2026-07-23 09:26:00] - INFO - BUY_EPS 2026-07-23 603345.SH 5828.259442359943 wait_days 5 None","2026-10-19 15:21:44.969363 - [2026-07-24 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.969448 - [2026-07-24 09:26:00] - INFO - BUY_EPS 2026-07-24 603345.SH 5828.259442359943 wait_days 6 None","2026-10-19 15:21:44.973239 - [2026-07-27 09:26:00] - WARN - 603345.SH 下单股数为0,订单无效.","2026-10-19 15:21:44.973312 - [2026-07-27 09:26:00] - INFO - BUY_EPS 2026-07-27 603345.SH 5828.259442359943 wait_days 7 None","2026-10-19 15:21:44.977346 - [2026-07-28 09:26:00] - INFO - EXIT_20D 2026-07-28 002832.SZ e21cde968537471287ab55042a30c9db","2026-10-19 15:21:44.978006 - [2026-07-28 09:26:00] - INFO - BUY_EPS 2026-07-28 603345.SH 5109826.7168094795 wait_days 8 330846b7e5aa4f8eb1f7690d85c170e9","2026-10-19 15:21:44.978414 - [2026-07-28 09:26:00] - INFO - BUY_EPS 2026-07-28 000729.SZ 5109826.7168094795 wait_days 9 3f76d5c927424653a99b43ef456d72e0","2026-10-19 15:21:44.987087 - [2026-07-29 09:26:00] - INFO - EXIT_20D 2026-07-29 000700.SZ ec46ada0980141cca730ad54c336b448","2026-10-19 15:21:44.987772 - [2026-07-29 09:26:00] - INFO - BUY_EPS 2026-07-29 000831.SZ 71693.84266559812 wait_days 26 d90fe662ddad431bab11db9a9fdd9376","2026-10-19 15:21:45.051138 - [2026-08-10 09:26:00] - INFO - EXIT_20D 2026-08-10 000301.SZ aac25c28b59e40879f2595a7428b6b5b","2026-10-19 15:21:45.055684 - [2026-08-10 09:26:00] - INFO - BUY_EPS 2026-08-10 601666.SH 7270.343192463125 wait_days 1 1f496038318c4776a71037ca7134e814","2026-10-19 15:21:45.080117 - [2026-08-13 09:26:00] - INFO - EXIT_20D 2026-08-13 000415.SZ 0db7d69cdcef4c26ad920878ac665ae4","2026-10-19 15:21:45.080758 - [2026-08-13 09:26:00] - INFO - BUY_EPS 2026-08-13 002568.SZ 5513.972361687124 wait_days 4 dbdb8b21bc964b619426cd9c4c04ce0a","2026-10-19 15:21:45.223382 - [2026-08-25 09:26:00] - INFO - EXIT_20D 2026-08-25 000729.SZ 6b7cf3e609cb4cd0af87493785c3aacd","2026-10-19 15:21:45.223827 - [2026-08-25 09:26:00] - INFO - EXIT_20D 2026-08-25 603345.SH 7301f5987fe94c568cf670dd68cfb4c1","2026-10-19 15:21:45.224569 - [2026-08-25 09:26:00] - INFO - BUY_EPS 2026-08-25 000526.SZ 4666766.503538709 wait_days 3 710fcaaa9ef54512823aad22693d3e4e","2026-10-19 15:21:45.224959 - [2026-08-25 09:26:00] - INFO - BUY_EPS 2026-08-25 603997.SH 4666766.503538709 wait_days 1 4a6b0403e2164fd286a18f4d4476721f","2026-10-19 15:21:45.244245 - [2026-08-26 09:26:00] - INFO - EXIT_20D 2026-08-26 000831.SZ 662575c40673448e8a8ece4088530925","2026-10-19 15:21:45.244903 - [2026-08-26 09:26:00] - INFO - BUY_EPS 2026-08-26 601211.SH 109107.38167751029 wait_days 4 b9998027313442289ae3613066df454c","2026-10-19 15:21:45.445578 - [2026-09-07 09:26:00] - INFO - EXIT_20D 2026-09-07 601666.SH ad2ddbbabb21415aa07ecdeb0aa5263e","2026-10-19 15:21:45.446347 - [2026-09-07 09:26:00] - INFO - BUY_EPS 2026-09-07 300592.SZ 8953.66704846229 wait_days 5 71c9158dfded4a30a56157bc5a131e58","2026-10-19 15:21:45.488925 - [2026-09-10 09:26:00] - INFO - EXIT_20D 2026-09-10 002568.SZ 1e2dcc560cd84cfda0f108073dab58d9","2026-10-19 15:21:45.489731 - [2026-09-10 09:26:00] - INFO - BUY_EPS 2026-09-10 600039.SH 4263.517771210288 wait_days 4 4d7cb181778f4656a2635cf738c5017f","2026-10-19 15:21:45.541929 - [2026-09-22 09:26:00] - INFO - EXIT_20D 2026-09-22 000526.SZ f08f5b0735e64c36a1ce96fb4978dfb5","2026-10-19 15:21:45.542467 - [2026-09-22 09:26:00] - INFO - EXIT_20D 2026-09-22 603997.SH a614b310a907492890931bb616df4f8a","2026-10-19 15:21:45.543219 - [2026-09-22 09:26:00] - INFO - BUY_EPS 2026-09-22 601233.SH 5222149.257244442 wait_days 17 f9499f0b89bf4476917cb0831a7c1216","2026-10-19 15:21:45.543634 - [2026-09-22 09:26:00] - INFO - BUY_EPS 2026-09-22 601872.SH 5222149.257244442 wait_days 14 bfd74df056a34169bdb939e8067c2516","2026-10-19 15:21:45.547642 - [2026-09-23 09:26:00] - INFO - EXIT_20D 2026-09-23 601211.SH bd06cc3fb8a143679f401109585ffb68","2026-10-19 15:21:45.548470 - [2026-09-23 09:26:00] - INFO - BUY_EPS 2026-09-23 603019.SH 132234.54210637353 wait_days 15 8d81ff9ce86c4f2a9dfee9f2fe5abd2b","2026-10-19 15:21:45.583833 - [2026-10-13 09:26:00] - INFO - EXIT_20D 2026-10-13 300592.SZ 20564576f16446da928654e70c3c4865","2026-10-19 15:21:45.584511 - [2026-10-13 09:26:00] - INFO - BUY_EPS 2026-10-13 000408.SZ 14151.183867843514 wait_days 19 f58502feab9c436d8312094651b1b150","2026-10-19 15:21:45.595082 - [2026-10-16 04:00:00] - INFO - 600039.SH在2026-10-16日发生了分红：每股税前分红0.036","2026-10-19 15:21:45.596221 - [2026-10-16 09:26:00] - INFO - EXIT_20D 2026-10-16 600039.SH a4727493839242ca8dff88c5f2b89e24","2026-10-19 15:21:45.596983 - [2026-10-16 09:26:00] - INFO - BUY_EPS 2026-10-16 000977.SZ 10665.302198651514 wait_days 24 da6b41f1f10c4e9ab2c36d48cd760277"]</script>
+  <script>
+    (() => {
+      const TRADE_PAGE_SIZE = 100;
+      const LOG_PAGE_SIZE = 200;
+      const navLinks = [...document.querySelectorAll('.toc a[data-target]')];
+      const sections = navLinks.map(a => document.getElementById(a.dataset.target)).filter(Boolean);
+      const setActive = (id) => navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === id));
+      if ('IntersectionObserver' in window && sections.length) {
+        const observer = new IntersectionObserver((entries) => {
+          const visible = entries.filter(e => e.isIntersecting)
+            .sort((a,b) => a.boundingClientRect.top - b.boundingClientRect.top);
+          if (visible[0]) setActive(visible[0].target.id);
+        }, { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+        sections.forEach(s => observer.observe(s));
+      }
+
+      async function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return;
+        }
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.top = '0';
+        textarea.style.left = '0';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        const copied = document.execCommand('copy');
+        textarea.remove();
+        if (!copied) throw new Error('copy failed');
+      }
+      document.querySelectorAll('.copy-code').forEach(button => {
+        button.addEventListener('click', async () => {
+          const codeElement = button.closest('.code-block')?.querySelector('code');
+          const code = codeElement?.textContent || '';
+          try {
+            await copyText(code);
+            button.textContent = '已复制';
+            button.classList.add('copied');
+          } catch (_) {
+            const selection = window.getSelection();
+            const range = document.createRange();
+            if (codeElement && selection) {
+              range.selectNodeContents(codeElement);
+              selection.removeAllRanges();
+              selection.addRange(range);
+            }
+            button.textContent = '请按 Ctrl+C';
+          }
+          window.setTimeout(() => {
+            button.textContent = '复制';
+            button.classList.remove('copied');
+          }, 1600);
+        });
+      });
+      const idButton = document.querySelector('.copy-backtest-id');
+      idButton?.addEventListener('click', async () => {
+        const idElement = document.querySelector('.backtest-id-value');
+        try {
+          await copyText(idElement?.textContent || '');
+          idButton.textContent = '已复制';
+          idButton.classList.add('copied');
+        } catch (_) {
+          idButton.textContent = '复制失败';
+        }
+        window.setTimeout(() => {
+          idButton.textContent = '复制';
+          idButton.classList.remove('copied');
+        }, 1600);
+      });
+
+      function readJsonData(id, fallback) {
+        const node = document.getElementById(id);
+        if (!node) return fallback;
+        try {
+          return JSON.parse(node.textContent || '');
+        } catch (_) {
+          return fallback;
+        }
+      }
+
+      function bindPager(container, itemCount, pageSize, renderPage) {
+        if (!container) return;
+        const pageCount = Math.max(1, Math.ceil(itemCount / pageSize));
+        const status = container.querySelector('[data-page-status]');
+        const buttons = Object.fromEntries(
+          [...container.querySelectorAll('[data-page-action]')]
+            .map(button => [button.dataset.pageAction, button])
+        );
+        let page = 1;
+        const update = nextPage => {
+          page = Math.min(pageCount, Math.max(1, nextPage));
+          renderPage(page);
+          if (status) {
+            const start = itemCount ? (page - 1) * pageSize + 1 : 0;
+            const end = Math.min(itemCount, page * pageSize);
+            status.textContent = `第 ${page} / ${pageCount} 页 · ${start}-${end} / ${itemCount}`;
+          }
+          if (buttons.first) buttons.first.disabled = page === 1;
+          if (buttons.prev) buttons.prev.disabled = page === 1;
+          if (buttons.next) buttons.next.disabled = page === pageCount;
+          if (buttons.last) buttons.last.disabled = page === pageCount;
+        };
+        buttons.first?.addEventListener('click', () => update(1));
+        buttons.prev?.addEventListener('click', () => update(page - 1));
+        buttons.next?.addEventListener('click', () => update(page + 1));
+        buttons.last?.addEventListener('click', () => update(pageCount));
+        update(1);
+      }
+
+      let tradeInitialized = false;
+      function initTrades() {
+        if (tradeInitialized) return;
+        tradeInitialized = true;
+        const rows = readJsonData('trade-data', []);
+        const body = document.getElementById('trade-body');
+        if (!body) return;
+        bindPager(
+          document.getElementById('trade-pagination'),
+          rows.length,
+          TRADE_PAGE_SIZE,
+          page => {
+            const fragment = document.createDocumentFragment();
+            const start = (page - 1) * TRADE_PAGE_SIZE;
+            rows.slice(start, start + TRADE_PAGE_SIZE).forEach(row => {
+              const tr = document.createElement('tr');
+              const direction = row.find(cell => ['BUY','SELL'].includes(String(cell).toUpperCase()));
+              row.forEach(cell => {
+                const td = document.createElement('td');
+                td.textContent = cell;
+                if (direction && String(cell).toUpperCase() === String(direction).toUpperCase()) {
+                  td.className = `direction ${String(direction).toLowerCase()}`;
+                }
+                tr.appendChild(td);
+              });
+              fragment.appendChild(tr);
+            });
+            body.replaceChildren(fragment);
+          }
+        );
+      }
+
+      let logInitialized = false;
+      function initLogs() {
+        if (logInitialized) return;
+        logInitialized = true;
+        const lines = readJsonData('log-data', []);
+        const content = document.getElementById('log-content');
+        if (!content) return;
+        bindPager(
+          document.getElementById('log-pagination'),
+          lines.length,
+          LOG_PAGE_SIZE,
+          page => {
+            const start = (page - 1) * LOG_PAGE_SIZE;
+            content.textContent = lines.slice(start, start + LOG_PAGE_SIZE).join('\n');
+          }
+        );
+      }
+
+      const lazySections = [
+        [document.getElementById('交易记录'), initTrades],
+        [document.getElementById('运行日志'), initLogs],
+      ].filter(([section]) => section);
+      if ('IntersectionObserver' in window) {
+        const dataObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const item = lazySections.find(([section]) => section === entry.target);
+            if (item) item[1]();
+            dataObserver.unobserve(entry.target);
+          });
+        }, { rootMargin:'320px 0px', threshold:0 });
+        lazySections.forEach(([section]) => dataObserver.observe(section));
+      } else {
+        lazySections.forEach(([, initialize]) => initialize());
+      }
+
+    })();
+  </script>
+</body>
+</html>

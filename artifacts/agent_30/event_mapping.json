@@ -1,0 +1,74 @@
+[
+  {
+    "event_id": "EV001",
+    "trade_code": "600123.SH",
+    "end_date": 20241231,
+    "trade_date": "2025-01-02"
+  },
+  {
+    "event_id": "EV002",
+    "trade_code": "688183.SH",
+    "end_date": 20250330,
+    "trade_date": "2025-03-31"
+  },
+  {
+    "event_id": "EV003",
+    "trade_code": "603589.SH",
+    "end_date": 20250429,
+    "trade_date": "2025-04-30"
+  },
+  {
+    "event_id": "EV004",
+    "trade_code": "600153.SH",
+    "end_date": 20250702,
+    "trade_date": "2025-07-03"
+  },
+  {
+    "event_id": "EV005",
+    "trade_code": "600176.SH",
+    "end_date": 20250829,
+    "trade_date": "2025-09-01"
+  },
+  {
+    "event_id": "EV006",
+    "trade_code": "301345.SZ",
+    "end_date": 20251023,
+    "trade_date": "2025-10-24"
+  },
+  {
+    "event_id": "EV007",
+    "trade_code": "603170.SH",
+    "end_date": 20251104,
+    "trade_date": "2025-11-05"
+  },
+  {
+    "event_id": "EV008",
+    "trade_code": "688778.SH",
+    "end_date": 20260123,
+    "trade_date": "2026-01-26"
+  },
+  {
+    "event_id": "EV009",
+    "trade_code": "000408.SZ",
+    "end_date": 20260419,
+    "trade_date": "2026-04-20"
+  },
+  {
+    "event_id": "EV010",
+    "trade_code": "301216.SZ",
+    "end_date": 20260512,
+    "trade_date": "2026-05-13"
+  },
+  {
+    "event_id": "EV011",
+    "trade_code": "002568.SZ",
+    "end_date": 20260806,
+    "trade_date": "2026-08-07"
+  },
+  {
+    "event_id": "EV012",
+    "trade_code": "300308.SZ",
+    "end_date": 20260911,
+    "trade_date": "2026-09-14"
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "event_id": "EV001",
+    "score_5d": -0.4,
+    "score_20d": -0.5,
+    "confidence": 0.68,
+    "evidence": "近5日-0.58%、近20日-3.39%；收盘低于MA5 0.77%、低于MA20 3.13%，MACD DIF/柱均负。bar60收93.0435，低于bar59的94.3478，量比0.5626；反弹成交偏弱。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV002",
+    "score_5d": -0.6,
+    "score_20d": -0.4,
+    "confidence": 0.61,
+    "evidence": "近5日-4.80%、近40日-22.94%；收盘低于MA5 3.00%，MACD DIF -2.86%。bar52放量至77.9388后bar60收68.3352；近20日+2.31%及MACD柱+1.48%减轻中期负分。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV003",
+    "score_5d": 0.3,
+    "score_20d": 0.1,
+    "confidence": 0.55,
+    "evidence": "bar60由bar59收97.4309升至99.7487，量比2.7826；近5日+1.74%，收盘高于MA5 1.54%。但近20日-0.67%、MACD DIF -0.75%，中期信号较弱。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV004",
+    "score_5d": 0.6,
+    "score_20d": 0.6,
+    "confidence": 0.77,
+    "evidence": "近5日+1.74%、近20日+5.82%；收盘高于MA20 4.13%，MACD DIF/柱均正。bar55量比2.9206上行，bar60收103.3333、量比1.5187；20日最大回撤仅-1.98%。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV005",
+    "score_5d": 0.3,
+    "score_20d": 0.6,
+    "confidence": 0.57,
+    "evidence": "近5日+15.29%、近20日+26.40%，MACD DIF/柱均正；bar59收126.2456、bar60收138.8790。但收盘高于MA5 10.54%、高于MA20 19.59%，bar60开高低收同为138.8790且量比仅0.6726，短线过热。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV006",
+    "score_5d": -0.4,
+    "score_20d": 0.1,
+    "confidence": 0.53,
+    "evidence": "近5日-5.86%，bar55收174.5583后bar60收164.3322，收盘低于MA5 1.75%，MACD柱-0.22%；但近20日+5.65%、高于MA20 2.73%、DIF +4.51%，中期方向接近中性。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV007",
+    "score_5d": 0.3,
+    "score_20d": 0.5,
+    "confidence": 0.64,
+    "evidence": "近5日+7.44%、近20日+8.04%，收盘高于MA20 7.00%，MACD DIF/柱均正；bar59收127.6243后bar60回至123.0466，且bar60量比2.1784，压低短线评分。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV008",
+    "score_5d": 0.5,
+    "score_20d": 0.7,
+    "confidence": 0.68,
+    "evidence": "近5日+3.85%、近20日+27.49%，收盘高于MA5 4.28%、高于MA20 14.89%，MACD DIF/柱均正；bar60收115.8392高于bar59的109.6336，量比1.2545。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV009",
+    "score_5d": 0.2,
+    "score_20d": 0.4,
+    "confidence": 0.59,
+    "evidence": "近5日+3.98%、近20日+19.61%，收盘高于MA20 6.70%，MACD DIF/柱均正；但bar60收95.2301低于bar59的97.0146，量比0.9552，短线动能转弱。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV010",
+    "score_5d": -0.3,
+    "score_20d": 0.0,
+    "confidence": 0.6,
+    "evidence": "近5日-1.17%，bar56收137.1403至bar60收131.2085，低于MA5 1.90%，MACD柱-1.37%；近20日仍+7.12%，但收盘相对MA20为-0.02%，中期方向不明。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV011",
+    "score_5d": -0.3,
+    "score_20d": 0.2,
+    "confidence": 0.55,
+    "evidence": "近5日-2.68%，bar56收115.0195后bar60收107.4260，低于MA5 2.95%、量比0.7785；近20日仍+20.25%，高于MA20 3.47%，MACD DIF/柱均正，保留有限中期正分。",
+    "abstain_reason": null
+  },
+  {
+    "event_id": "EV012",
+    "score_5d": 0.5,
+    "score_20d": 0.1,
+    "confidence": 0.53,
+    "evidence": "近5日+13.76%，bar55收58.8861至bar60收66.9883，收盘高于MA5 2.30%，MACD柱+3.18%；但近20日-1.80%、40日-5.46%，20日最大回撤-18.78%、DIF -2.33%，中期反转仍不稳。",
+    "abstain_reason": null
+  }
+]
